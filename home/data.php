@@ -9,6 +9,7 @@ if (isset($_POST['total_price'])) {
             // $price = $_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity'];
             $total = $total+$_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity'];
         }
+        if (count($_SESSION['cart'])>1) {
         ?>
         <div class="cart-total text-right">
         <h3>Cart Totals</h3>
@@ -19,6 +20,7 @@ if (isset($_POST['total_price'])) {
         <a href="checkout.html">Proceed to Checkout</a>
         </div>
         <?php
+        }
 }
 
 
