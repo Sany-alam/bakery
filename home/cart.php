@@ -1,5 +1,5 @@
 <?php session_start();
-$conn = mysqli_connect('localhost','root','','bakery'); 
+include("../connection.php");
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -63,7 +63,7 @@ $conn = mysqli_connect('localhost','root','','bakery');
     </header>
     <!-- header-area end -->
     <!-- slider or .breadcumb-area start -->
-    <?php include("includes/slider.php"); ?>
+    <?php //include("includes/slider.php"); ?>
     <!-- slider or .breadcumb-area end -->
     <!-- cart-area start -->
     <div class="cart-area ptb-100">
@@ -83,12 +83,6 @@ $conn = mysqli_connect('localhost','root','','bakery');
                                         </li>
                                         <li><a href="index.php">Continue Shopping</a></li>
                                     </ul>
-                                    <h3>Cupon</h3>
-                                    <p>Enter Your Cupon Code if You Have One</p>
-                                    <div class="cupon-wrap">
-                                        <input type="text" placeholder="Cupon Code">
-                                        <button>Apply Cupon</button>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 offset-xl-5 col-lg-4 offset-lg-3 col-md-6" id="total-price"></div>
@@ -105,36 +99,7 @@ $conn = mysqli_connect('localhost','root','','bakery');
     <!-- .footer-area start -->
     <?php include("includes/footer.php"); ?>
     <!-- .footer-area end -->
-    <!-- .footer-area end -->
-    <!-- ajaz -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <!-- jquery latest version -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap js -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- owl.carousel.2.0.0-beta.2.4 css -->
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <!-- mouse_scroll.js -->
-    <script src="assets/js/mouse_scroll.js"></script>
-    <!-- scrollup.js -->
-    <script src="assets/js/scrollup.js"></script>
-    <!-- isotope.pkgd.min.js -->
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <!-- imagesloaded.pkgd.min.js -->
-    <script src="assets/js/imagesloaded.pkgd.min.js"></script>
-    <!-- jquery.zoom.min.js -->
-    <script src="assets/js/jquery.zoom.min.js"></script>
-    <!-- swiper.min.js -->
-    <script src="assets/js/swiper.min.js"></script>
-    <!-- metisMenu.min.js -->
-    <script src="assets/js/metisMenu.min.js"></script>
-    <!-- mailchimp.js -->
-    <script src="assets/js/mailchimp.js"></script>
-    <!-- jquery-ui.min.js -->
-    <script src="assets/js/jquery-ui.min.js"></script>
-    <!-- main js -->
-    <script src="assets/js/scripts.js"></script>
-    <!-- custom java scripts and ajax -->
-    <script src="assets/js/custom.js"></script>
+    <!-- all js -->
+    <?php include("includes/scripts.php"); ?>
 </body>
 </html>

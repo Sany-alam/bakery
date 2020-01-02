@@ -14,8 +14,9 @@ if (mysqli_num_rows($res)>0) {
         <img src="<?php echo $items['img'] ?>" alt="">
         <div class="product-icon flex-style">
         <ul>
-        <li><a href="javascript:void(0)" onclick="veiwItem(<?php echo $items['id'] ?>)"><i class="fa fa-eye"></i></a></li>
-        <li><a href="javascript:void(0)" onclick="add_cart(<?php echo $items['id'] ?>,'<?php echo $items['name'] ?>')"><i class="fa fa-cart-plus"></i></a></li>
+        <ul>
+            <!-- <li><a href="javascript:void(0)" onclick="veiwItem(<?php echo $items['id'] ?>)"><i class="fa fa-eye"></i></a></li> -->
+            <li><a href="javascript:void(0)" onclick="add_cart(<?php echo $items['id']; ?>,'<?php echo $items['name']; ?>','<?php echo $items['img']; ?>','<?php echo $items['price']; ?>')"><i class="fa fa-cart-plus"></i></a></li>
         </ul>
         </div>
         </div>
@@ -34,8 +35,5 @@ if (mysqli_num_rows($res)>0) {
         <?php
     }
     ?>
-    <li class="col-12 text-center">
-    <a class="loadmore-btn" href="javascript:void(0);">Load More</a>
-    </li>
     </ul>
     </div>

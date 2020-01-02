@@ -1,4 +1,31 @@
-<div class="side-nav">
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from themenate.com/enlink-bs/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Nov 2019 04:53:35 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Enlink - Admin Dashboard Template</title>
+
+    <!-- Favicon -->
+    <!-- <link rel="shortcut icon" href="assets/images/logo/favicon.png"> -->
+
+    <!-- page css -->
+
+    <!-- Core css -->
+    <link href="assets/css/app.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="app">
+        <div class="layout">
+            <!-- Header START -->
+            <?php include("includes/header.php"); ?>   
+            <!-- Header END -->
+            <!-- Side Nav START -->
+            <div class="side-nav">
                 <div class="side-nav-inner">
                     <ul class="side-nav-menu scrollable">
                         <li>
@@ -37,7 +64,7 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
+                                <li class="active">
                                     <a href="add-category.php">Add category</a>
                                 </li>
                                 <li>
@@ -70,3 +97,63 @@
                     </ul>
                 </div>
             </div>
+            <!-- Side Nav END -->
+
+            <!-- Page Container START -->
+            <div class="page-container">
+                <!-- Content Wrapper START -->
+                <div class="main-content">
+                <div class="page-header">
+                        <h2 class="header-title">Add Category</h2>
+                        <div class="header-sub-title">
+                            <nav class="breadcrumb breadcrumb-dash">
+                                <a href="#" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+                                <a class="breadcrumb-item" href="#">Category</a>
+                                <span class="breadcrumb-item active">Add Category</span>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header my-4">
+                            <h3 class="text-center">Add Category</h3>
+                        </div>
+                        <div class="card-body ">
+                        <div class="form-group">
+                    <label for="add-category-name">Category name</label>
+                    <input placeholder="Enter category name"type="text" class="form-control" id="add-category-name">
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary" id="add-category">Add Category</button>
+                </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Content Wrapper END -->
+
+                <!-- Footer START -->
+                <?php include("includes/footer.php"); ?>
+                <!-- Footer END -->
+
+            </div>
+            <!-- Page Container END -->
+
+            <!-- Search Start-->
+            <?php include("includes/searchBAR.php"); ?>
+            <!-- Search End-->
+        </div>
+    </div>
+
+    <!-- Core Vendors JS -->
+    <script src="assets/js/vendors.min.js"></script>
+
+    <!-- page js -->
+    <script src="assets/vendors/chartjs/Chart.min.js"></script>
+    <!-- <script src="assets/js/pages/dashboard-default.js"></script> -->
+
+    <!-- Core JS -->
+    <script src="assets/js/app.min.js"></script>
+    <!-- custom js -->
+    <script src="assets/js/custom.js"></script>
+
+</body>
+</html>

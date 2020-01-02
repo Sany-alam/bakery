@@ -2,7 +2,57 @@ $(function(){
     countCart();
     show_cart();
     total_price();
+    order_list();
 });
+
+
+function place_order() {
+    var name = $("#name").val();
+    var email = $("#email").val();
+    var phone = $("#phone").val();
+    var address = $("#address").val();
+    if (name.length == 0 || email.length == 0 || phone.length == 0 || address.length ==0) {
+        alert("Fill up form and countinue");
+    }
+    else{
+    var formdata = new FormData();
+    formdata.append("name",name);
+    formdata.append("email",email);
+    formdata.append("phone",phone);
+    formdata.append("address",address);
+    formdata.append("order","order");
+    $.ajax({
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data){
+            alert("Your order adedd successfully! Countinue shopping");
+            window.location.href="index.php";
+        },
+        cache:false
+    });
+}
+}
+
+
+
+function order_list() {
+    var formdata = new FormData();
+    formdata.append("order_list","order_list");
+    $.ajax({
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data){
+            $("#order-list").html(data);
+        },
+        cache:false
+    });
+}
 
 
 function total_price() {
@@ -146,9 +196,11 @@ function veiwItem(id) {
     });
 }
 
-function add_cart(id,name) {
+function add_cart(id,name,img,price) {
+    $("#cart-img").attr('src',img);
     $("#cart-name").html(name);
     $("#cart-hiddenid").val(id);
     $("#quantity").val(1);
+    $("#cart-price").html(price+" Tk");
     $("#AddToCartModal").modal('show');
 }

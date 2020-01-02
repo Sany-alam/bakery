@@ -1,5 +1,57 @@
 <?php session_start();
-$conn = mysqli_connect('localhost','root','','bakery');
+include("../connection.php");
+
+
+
+if (isset($_POST['order'])) {
+    date_default_timezone_set('Asia/Dhaka');
+    $date = date('Y-m-d');
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    
+        $order_sql = "SELECT MAX(order_no) AS `order_no` FROM `orders`";
+        $order_res = mysqli_query($conn,$order_sql);
+        if (mysqli_num_rows($order_res)>0) {
+            $order_list = mysqli_fetch_array($order_res);
+            $order_no = $order_list['order_no']+1;
+        }
+        else {
+            $order_no = 1;
+        }
+        date_default_timezone_set('Asia/Dhaka');
+        $date = date('d-m-Y');
+        $status = "request";
+        
+    for ($i=1; $i < count($_SESSION['cart']); $i++) { 
+        $product_id = $_SESSION['cart'][$i]['id'];
+        $product_quantity = $_SESSION['cart'][$i]['quantity'];
+
+        $sql = "INSERT INTO `orders`(`name`, `email`, `phone`, `address`, `product_id`,`product_quantity`,`order_no`,`status`,`order_date`) VALUES ('$name','$email','$phone','$address','$product_id','$product_quantity','$order_no','$status','$date')";
+        $res = mysqli_query($conn,$sql);
+    }
+    if (isset($_SESSION['cart'])) {
+        unset($_SESSION['cart']);
+    }
+}
+
+
+if (isset($_POST['order_list'])) {
+    $total = 0;
+    for ($i=1; $i < count($_SESSION['cart']); $i++) { 
+        ?>
+        <li><?php echo $_SESSION['cart'][$i]['name']; ?> <span class="pull-right"><?php echo $_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity']; ?></span></li>
+    <?php
+    $total = $total+$_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity'];;
+    }
+    ?>
+    <!-- <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li> -->
+    <li>Delivery charge <span class="pull-right"><?php $charge = 100; echo $charge; ?></span></li>
+    <li>Total<span class="pull-right"><?php echo $total+$charge; ?></span></li>
+    <?php
+}
+
 
 
 if (isset($_POST['total_price'])) {
@@ -17,7 +69,7 @@ if (isset($_POST['total_price'])) {
         <li><span class="pull-left">Subtotal </span><?php echo $total." Tk"; ?></li>
         <li><span class="pull-left"> Total </span><?php echo $total." Tk"; ?></li>
         </ul>
-        <a href="checkout.html">Proceed to Checkout</a>
+        <a href="checkout.php">Proceed to Checkout</a>
         </div>
         <?php
         }

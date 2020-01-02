@@ -33,9 +33,15 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="modal-body d-flex">
+                <div class="product-single-img w-50">
+                        <img id="cart-img" src="" alt="">
+                    </div>
                             <input type="hidden" id="cart-hiddenid">
                     <div class="product-single-content w-50">
                         <h3 id="cart-name"></h3>
+                        <div class="rating-wrap fix">
+                            <span id="cart-price" class="pull-left"></span>
+                        </div>
                         <ul class="input-style">
                             <li class="quantity cart-plus-minus">
                                 <input id="quantity" type="number"/>

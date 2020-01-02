@@ -1,5 +1,5 @@
 <?php session_start();
-$conn = mysqli_connect('localhost','root','','bakery'); 
+include("../connection.php");
 $ip = ip();
 function ip()
 {
@@ -83,12 +83,15 @@ if (!isset($_SESSION['cart'])) {
     <!-- slider or .breadcumb-area start -->
     <?php include("includes/slider.php"); ?>
     <!-- slider or .breadcumb-area end -->
+    <!-- featured-area start -->
+    <?php include("includes/featured-area.php"); ?>
+    <!-- featured-area end -->
     <!-- product-area start -->
     <div class="product-area pt-100">
         <div class="container">
             <div class="row">
-                <div class="col-sm-9 col-lg-10">
-                    <div class="product-menu">
+                <div class="col-sm-12 col-lg-12">
+                    <div class="product-menu mx-auto">
                         <ul class="nav">
                             <li>
                                 <a class="active" data-toggle="tab" href="#all">All food</a>
@@ -102,13 +105,7 @@ if (!isset($_SESSION['cart'])) {
                         </ul>
                     </div>
                 </div>
-                <!-- <div class="col-sm-3 col-lg-2">
-                    <div class="filter-menu text-right">
-                        <a href="javascript:void(0);">Filter</a>
-                    </div>
-                </div> -->
             </div>
-            <p class="container" id="array"></p>
             <!-- filter tab -->
             <?php //include("includes/filter.php"); ?>
             <div class="tab-content">
@@ -122,6 +119,62 @@ if (!isset($_SESSION['cart'])) {
         </div>
     </div>
     <!-- product-area end -->
+    <!-- banner-area start -->
+    <div class="banner-area bg-img-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-6 col-md-8 offset-md-4">
+                    <div class="banner-wrap">
+                        <p>Birthday Cake</p>
+                        <h2>upto<span>50%</span> Off</h2>
+                        <a href="javascript:void(0)">Shop Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner-area end -->
+    <!-- product-area start -->
+    <div class="product-area">
+        <div class="fluid-container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h2>Our Latest Items</h2>
+                        <img src="assets/images/section-title.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <ul class="row">
+                <?php
+                $sqla = "SELECT * FROM `item-detail` ORDER BY id DESC";
+                $resa = mysqli_query($conn,$sqla);
+                while ($items = mysqli_fetch_array($resa)) {
+                    ?>
+                    <li class="col-xl-3 col-lg-4 col-sm-6 col-12">
+                    <div class="product-wrap">
+                        <div class="product-img">
+                            <span>Sale</span>
+                            <img src="<?php echo $items['img']; ?>" alt="">
+                            <div class="product-icon flex-style">
+                            <ul>
+                               <li><a href="javascript:void(0)" onclick="add_cart('<?php echo $items['id']; ?>','<?php echo $items['name']; ?>','<?php echo $items['img']; ?>','<?php echo $items['price']; ?>')"><i class="fa fa-cart-plus"></i></a></li>
+                            </ul>
+                            </div>
+                        </div>
+                        <div class="product-content">
+                            <h3><a href="single-product.html"><?php echo $items['name']; ?></a></h3>
+                            <p class="pull-left"><?php echo $items['price']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+                    <?php
+                }
+                ?>
+            </ul>
+        </div>
+    </div>
     <!-- start social-newsletter-section -->
     <?php include("includes/subscription.php"); ?>
     <!-- end social-newsletter-section -->
