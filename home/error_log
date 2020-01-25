@@ -1,0 +1,17 @@
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/zubreinc/public_html/sany/bakery/home/includes/featured-area.php on line 8
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home/zubreinc/public_html/sany/bakery/home/includes/featured-area.php on line 9
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/zubreinc/public_html/sany/bakery/home/includes/all-food.php on line 3
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/zubreinc/public_html/sany/bakery/home/includes/all-food.php on line 8
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/zubreinc/public_html/sany/bakery/home/includes/cakes.php on line 4
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/zubreinc/public_html/sany/bakery/home/includes/cakes.php on line 8
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/zubreinc/public_html/sany/bakery/home/includes/coockies.php on line 3
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/zubreinc/public_html/sany/bakery/home/includes/coockies.php on line 8
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, boolean given in /home/zubreinc/public_html/sany/bakery/home/index.php on line 151
+[02-Jan-2020 06:14:35 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, null given in /home/zubreinc/public_html/sany/bakery/home/index.php on line 152
+[02-Jan-2020 06:14:36 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[02-Jan-2020 06:14:36 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[02-Jan-2020 06:14:36 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[02-Jan-2020 06:14:36 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[02-Jan-2020 06:14:37 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[02-Jan-2020 06:14:37 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1

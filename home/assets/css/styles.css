@@ -57,9 +57,14 @@ body {
     float: right;
 }
 
+.logo img {
+    max-width: 100%;
+    height: auto!important;
+}
+
 img {
     max-width: 100%;
-    height: auto
+    height: 200px;
 }
 
 .fix {
@@ -825,7 +830,7 @@ header-area start
 }
 
 .slide-inner1 {
-    background: url(../images/slider/1.jpg);
+    background: url(../images/slider/Crazy-No-Bake-Cookies.jpg);
 }
 
 .slide-inner2 {
@@ -841,11 +846,11 @@ header-area start
 }
 
 .slide-inner7 {
-    background: url(../images/slider/3.jpg);
+    background: url(../images/slider/ombre-wedding-cake.jpg);
 }
 
 .slide-inner8 {
-    background: url(../images/slider/4.jpg);
+    background: url(../images/slider/triple-chocolate-cake.jpg);
 }
 .slide-inner6 {
     background: url(../images/slider/6.jpg);
