@@ -15,3 +15,4 @@
 [02-Jan-2020 06:14:36 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
 [02-Jan-2020 06:14:37 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
 [02-Jan-2020 06:14:37 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 1
+[26-Jan-2020 18:50:39 UTC] PHP Warning:  mysqli_connect(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/zubreinc/public_html/sany/bakery/connection.php on line 8

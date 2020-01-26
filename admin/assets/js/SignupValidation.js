@@ -306,7 +306,7 @@ var birthdate = $("#birthdate").val();
       var msg = $.trim(data);
       if (msg == "congo")
       {
-        location.href="upload-pp.php"
+        location.href="index.php"
       }
       else {
         alert("something went wrong");

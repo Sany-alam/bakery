@@ -7,8 +7,8 @@ if (!isset($_SESSION['admin'])) {
 
 
 <!-- Mirrored from themenate.com/enlink-bs/dist/sign-up-1.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Nov 2019 04:57:48 GMT -->
-<head>
-    <meta charset="utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Enlink - Admin Dashboard Template</title>
 
@@ -36,7 +36,7 @@ if (!isset($_SESSION['admin'])) {
                             <p class="text-white font-size-16 lh-2 w-80 opacity-08">Climb leg rub face on everything give attitude nap all day for under the bed. Chase mice attack feet but rub face on everything hopped up.</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <span class="text-white">© 2019 ThemeNate</span>
+                            <span class="text-white">© 2019 abc</span>
                             <ul class="list-inline">
                                 <li class="list-inline-item">
                                     <a class="text-white text-link" href="#">Legal</a>
@@ -86,10 +86,6 @@ if (!isset($_SESSION['admin'])) {
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex align-items-center justify-content-between p-t-15">
-                                            <div class="checkbox">
-                                                <input id="agreement_check" type="checkbox">
-                                                <label for="agreement_check"><span>I have read the <a href="javascript:void(0)">agreement</a></span></label>
-                                            </div>
                                             <button type="button" id="submit" class="btn btn-primary">Sign In</button>
                                         </div>
                                         <div class="font-size-13 text-muted text-center">

@@ -92,17 +92,7 @@ if (!isset($_SESSION['cart'])) {
             <div class="row">
                 <div class="col-sm-12 col-lg-12">
                     <div class="product-menu mx-auto">
-                        <ul class="nav">
-                            <li>
-                                <a class="active" data-toggle="tab" href="#all">All food</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#cakes">cakes</a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#coockies">coockies</a>
-                            </li>
-                        </ul>
+                        <?php include("includes/category-tab-content.php"); ?>
                     </div>
                 </div>
             </div>
@@ -112,9 +102,7 @@ if (!isset($_SESSION['cart'])) {
                 <!-- tab pane - all -->
                 <?php include("includes/all-food.php"); ?>
                 <!-- tavb pane - cakes -->
-                <?php include("includes/cakes.php"); ?>
-                <!-- tab pane - coockies -->
-                <?php include('includes/coockies.php'); ?>
+                <?php include("includes/categorize.php"); ?>
             </div>
         </div>
     </div>

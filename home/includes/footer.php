@@ -48,7 +48,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-12">
                         <div class="footer-reserved">
                             <ul>
-                                <li>Copyright © 2019 Sany All rights reserved.</li>
+                                <li>Copyright © 2019 abc.</li>
                             </ul>
                         </div>
                     </div>

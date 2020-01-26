@@ -8,11 +8,7 @@ include("../connection.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Enlink - Admin Dashboard Template</title>
-
-    <!-- Favicon -->
-    <!-- <link rel="shortcut icon" href="assets/images/logo/favicon.png"> -->
-
+    <title>ToHoney - Admin Dashboard</title>
     <!-- page css -->
     <link href="assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
     <!-- Core css -->

@@ -4,24 +4,13 @@ if (isset($_SESSION['admin'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-
-<!-- Mirrored from themenate.com/enlink-bs/dist/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 12 Nov 2019 04:53:35 GMT -->
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Enlink - Admin Dashboard Template</title>
-
-    <!-- Favicon -->
-    <!-- <link rel="shortcut icon" href="assets/images/logo/favicon.png"> -->
-
-    <!-- page css -->
-
+    <title>Enlink - Admin Dashboard</title>
     <!-- Core css -->
     <link href="assets/css/app.min.css" rel="stylesheet">
-
 </head>
-
 <body>
     <div class="app">
         <div class="layout">
@@ -36,21 +25,21 @@ if (isset($_SESSION['admin'])) {
             <div class="page-container">
                 <!-- Content Wrapper START -->
                 <div class="main-content">
-                <div class="card">
-    <div class="card-header d-flex justify-content-between align-items-center">
-        <h5>All Products</h5>
-        <div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Additems">Add items</button>
-        </div>
-    </div>
-    <div class="card-body">
-        <div class="m-t-30">
-            <ul class="list-group list-group-flush" id="item">
-                
-            </ul> 
-        </div>
-    </div>
-</div>
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5>All Products</h5>
+                            <div>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Additems">Add items</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="m-t-30">
+                                <ul class="list-group list-group-flush" id="item">
+                                    
+                                </ul> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- Content Wrapper END -->
 

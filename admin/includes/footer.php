@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer-content">
-        <p class="m-b-0">Copyright © 2020 xit's. All rights reserved.</p>
+        <p class="m-b-0">Copyright © 2020 abc. All rights reserved.</p>
         <span>
             <a href="#" class="text-gray m-r-15">Term &amp; Conditions</a>
             <a href="#" class="text-gray">Privacy &amp; Policy</a>
