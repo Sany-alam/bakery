@@ -135,7 +135,7 @@ if (!isset($_SESSION['cart'])) {
             </div>
             <ul class="row">
                 <?php
-                $sqla = "SELECT * FROM `item-detail` ORDER BY id DESC";
+                $sqla = "SELECT * FROM `item-detail` ORDER BY id DESC LIMIT 4";
                 $resa = mysqli_query($conn,$sqla);
                 while ($items = mysqli_fetch_array($resa)) {
                     ?>

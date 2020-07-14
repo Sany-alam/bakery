@@ -10,7 +10,7 @@ else {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>ToHoney - Admin Dashboard</title>
+    <title>To-honey - Admin</title>
     <!-- Core css -->
     <link href="assets/css/app.min.css" rel="stylesheet">
 
@@ -47,7 +47,6 @@ else {
                                     </div>
                                     <div class="form-group">
                                         <label class="font-weight-semibold" for="password">Password:</label>
-                                        <a class="float-right font-size-13 text-muted" href="#">Forget Password?</a>
                                         <div class="input-affix m-b-10">
                                             <i class="prefix-icon anticon anticon-lock"></i>
                                             <input type="password" class="form-control" id="password" placeholder="Password">
@@ -62,10 +61,6 @@ else {
                                     </div>
                                     <div class="form-group">
                                         <div class="d-flex align-items-center justify-content-between">
-                                            <span class="font-size-13 text-muted">
-                                                Don't have an account?
-                                                <a class="small" href="sign-up.php"> Signup</a>
-                                            </span>
                                             <button type="button" class="btn btn-primary" id="signin">Sign In</button>
                                         </div>
                                     </div>

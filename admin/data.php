@@ -3,38 +3,38 @@ include("../connection.php");
 
 
 if (isset($_POST['complete_orders'])) {
-    $sql = "SELECT * FROM `orders` where `status` = 'complete'";
-    $res = mysqli_query($conn,$sql);
-    while ($item = mysqli_fetch_assoc($res)) {
-    ?>
-<tr role="row" class="odd">
-    <td class="sorting_1">
-        <div class="checkbox">
-            <input id="check-item-1" type="checkbox">
-            <label for="check-item-1" class="m-b-0"></label>
-        </div>
-    </td>
-    <td>
-        #<?php echo $item['order_no'] ?>
-    </td>
-    <td>
-        <div class=" align-items-center">
-            <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
-        </div>
-    </td>
-    <td><?php echo $item['order_date'] ?></td>
-    <td>
-    <?php echo $item['complete_order_date'] ?>
-    </td>
-    <td>
-        <div class="d-flex align-items-center">
-            <div class="badge badge-success badge-dot m-r-10"></div>
-            <div>Complete Order</div>
-        </div>
-    </td>
-</tr>
-    <?php
-    }
+        $sql = "SELECT * FROM `orders` where `status` = 'complete'";
+        $res = mysqli_query($conn,$sql);
+        while ($item = mysqli_fetch_assoc($res)) {
+        ?>
+    <tr role="row" class="odd">
+        <td class="sorting_1">
+            <div class="checkbox">
+                <input id="check-item-1" type="checkbox">
+                <label for="check-item-1" class="m-b-0"></label>
+            </div>
+        </td>
+        <td>
+            #<?php echo $item['order_no'] ?>
+        </td>
+        <td>
+            <div class=" align-items-center">
+                <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
+            </div>
+        </td>
+        <td><?php echo $item['order_date'] ?></td>
+        <td>
+        <?php echo $item['complete_order_date'] ?>
+        </td>
+        <td>
+            <div class="d-flex align-items-center">
+                <div class="badge badge-success badge-dot m-r-10"></div>
+                <div>Complete Order</div>
+            </div>
+        </td>
+    </tr>
+        <?php
+        }
 }
 
 
@@ -44,36 +44,36 @@ if (isset($_POST['on_delivery_courier_detail'])) {
     $res = mysqli_query($conn,$sql);
     $item = mysqli_fetch_assoc($res)
     ?>
-<div class="row align-items-center">
-    <div class="col-md-7">
-        <div class="d-md-flex align-items-center">
-            <div class="text-center text-sm-left ">
-                <div class="avatar avatar-image" style="width: 150px; height:150px">
-                    <img src="<?php echo $item['img']; ?>" alt="">
+    <div class="row align-items-center">
+        <div class="col-md-7">
+            <div class="d-md-flex align-items-center">
+                <div class="text-center text-sm-left ">
+                    <div class="avatar avatar-image" style="width: 150px; height:150px">
+                        <img src="<?php echo $item['img']; ?>" alt="">
+                    </div>
+                </div>
+                <div class="text-center text-sm-left m-v-15 p-l-30">
+                    <h2 class="m-b-5"><?php echo $item['name']; ?></h2>
                 </div>
             </div>
-            <div class="text-center text-sm-left m-v-15 p-l-30">
-                <h2 class="m-b-5"><?php echo $item['name']; ?></h2>
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="d-md-block d-none border-left col-1"></div>
+                <div class="col">
+                    <ul class="list-unstyled m-t-10">
+                        <li class="row">
+                            <p class="col-sm-4 col-4 font-weight-semibold text-dark m-b-5">
+                                <i class="m-r-10 text-primary anticon anticon-phone"></i>
+                                <span>Phone: </span> 
+                            </p>
+                            <p class="col font-weight-semibold"> <?php echo $item['phone']; ?></p>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-md-5">
-        <div class="row">
-            <div class="d-md-block d-none border-left col-1"></div>
-            <div class="col">
-                <ul class="list-unstyled m-t-10">
-                    <li class="row">
-                        <p class="col-sm-4 col-4 font-weight-semibold text-dark m-b-5">
-                            <i class="m-r-10 text-primary anticon anticon-phone"></i>
-                            <span>Phone: </span> 
-                        </p>
-                        <p class="col font-weight-semibold"> <?php echo $item['phone']; ?></p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
     <?php
 }
 
@@ -320,26 +320,26 @@ if (isset($_POST['category_list'])) {
     if (mysqli_num_rows($res)>0) {
         while ($item = mysqli_fetch_array($res)) {
     ?>
-<tr>
-   <td>
-       <div class="checkbox">
-           <input id="check-item-<?php echo $item['id']; ?>" type="checkbox">
-           <label for="check-item-<?php echo $item['id']; ?>" class="m-b-0"></label>
-        </div>
-    </td>
+    <tr>
     <td>
-        #<?php echo $item['id']; ?>
-    </td>
-    <td><?php echo $item['category']; ?></td>
-    <td class="text-right">
-        <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right" onclick="edit_category(<?php echo $item['id']; ?>)">
-            <i class="anticon anticon-edit"></i>
-        </button>
-        <button class="btn btn-icon btn-hover btn-sm btn-rounded" onclick="delete_category(<?php echo $item['id']; ?>)">
-            <i class="anticon anticon-delete"></i>
-        </button>
-    </td>
-</tr>
+        <div class="checkbox">
+            <input id="check-item-<?php echo $item['id']; ?>" type="checkbox">
+            <label for="check-item-<?php echo $item['id']; ?>" class="m-b-0"></label>
+            </div>
+        </td>
+        <td>
+            #<?php echo $item['id']; ?>
+        </td>
+        <td><?php echo $item['category']; ?></td>
+        <td class="text-right">
+            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right" onclick="edit_category(<?php echo $item['id']; ?>)">
+                <i class="anticon anticon-edit"></i>
+            </button>
+            <button class="btn btn-icon btn-hover btn-sm btn-rounded" onclick="delete_category(<?php echo $item['id']; ?>)">
+                <i class="anticon anticon-delete"></i>
+            </button>
+        </td>
+    </tr>
     <?php
         }
     }
@@ -390,31 +390,31 @@ if (isset($_POST['display_item'])) {
         // $i = 0;
         for ($i=1; $i < $item = mysqli_fetch_array($res); $i++) {
     ?>
-<tr>
-   <td>
-       <div class="checkbox">
-           <input id="check-item-<?php echo $i; ?>" type="checkbox">
-           <label for="check-item-<?php echo $i; ?>" class="m-b-0"></label>
-        </div>
-    </td>
-    <td>#<?php echo $i; ?></td>
+    <tr>
     <td>
-        <div class="d-flex align-items-center">
-            <img class="img-fluid rounded" src="<?php echo $item['img']; ?>" style="max-width: 60px" alt="">
-            <h6 class="m-b-0 m-l-10"><?php echo $item['name']; ?></h6>
-        </div>
-    </td>
-    <td><?php echo $item['category']; ?></td>
-    <td><?php echo $item['price']; ?> Tk</td>
-    <td class="text-right">
-        <button onclick="editItem(<?php echo $item['id']; ?>)" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-            <i class="anticon anticon-edit"></i>
-        </button>
-        <button onclick="delItem(<?php echo $item['id']; ?>)" class="btn btn-icon btn-hover btn-sm btn-rounded">
-            <i class="anticon anticon-delete"></i>
-        </button>
-    </td>
-</tr>
+        <div class="checkbox">
+            <input id="check-item-<?php echo $i; ?>" type="checkbox">
+            <label for="check-item-<?php echo $i; ?>" class="m-b-0"></label>
+            </div>
+        </td>
+        <td>#<?php echo $i; ?></td>
+        <td>
+            <div class="d-flex align-items-center">
+                <img class="img-fluid rounded" src="<?php echo $item['img']; ?>" style="max-width: 60px" alt="">
+                <h6 class="m-b-0 m-l-10"><?php echo $item['name']; ?></h6>
+            </div>
+        </td>
+        <td><?php echo $item['category']; ?></td>
+        <td><?php echo $item['price']; ?> Tk</td>
+        <td class="text-right">
+            <button onclick="editItem(<?php echo $item['id']; ?>)" class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
+                <i class="anticon anticon-edit"></i>
+            </button>
+            <button onclick="delItem(<?php echo $item['id']; ?>)" class="btn btn-icon btn-hover btn-sm btn-rounded">
+                <i class="anticon anticon-delete"></i>
+            </button>
+        </td>
+    </tr>
     <?php
         }
     // }

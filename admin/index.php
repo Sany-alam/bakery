@@ -1,13 +1,25 @@
 <?php
 session_start();
 if (isset($_SESSION['admin'])) {
+    include("../connection.php");
+    $sql_item = "SELECT * FROM `item-detail`";
+    $res_item = mysqli_query($conn,$sql_item);
+
+    $sql_complete_order = "SELECT * FROM `orders` WHERE `status` = 'complete' GROUP BY order_no";
+    $res_complete_order = mysqli_query($conn,$sql_complete_order);
+
+    $sql_request_order = "SELECT * FROM `orders` WHERE `status` = 'request' GROUP BY order_no";
+    $res_request_order = mysqli_query($conn,$sql_request_order);
+
+    $sql_customer = "SELECT * FROM `orders` GROUP BY `name`";
+    $res_customer = mysqli_query($conn,$sql_customer);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Enlink - Admin Dashboard</title>
+    <title>To-honey - Admin</title>
     <!-- Core css -->
     <link href="assets/css/app.min.css" rel="stylesheet">
 </head>
@@ -25,34 +37,70 @@ if (isset($_SESSION['admin'])) {
             <div class="page-container">
                 <!-- Content Wrapper START -->
                 <div class="main-content">
-                    <div class="card">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h5>All Products</h5>
-                            <div>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Additems">Add items</button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                    <i class="anticon anticon-database"></i>
+                                    </div>
+                                    <div class="m-l-15">
+                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_item); ?></h2>
+                                        <p class="m-b-0 text-muted">Total Items</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="m-t-30">
-                                <ul class="list-group list-group-flush" id="item">
-                                    
-                                </ul> 
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="avatar avatar-icon avatar-lg avatar-cyan">
+                                        <i class="anticon anticon-user"></i>
+                                    </div>
+                                    <div class="m-l-15">
+                                    <h2 class="m-b-0"><?php echo mysqli_num_rows($res_customer); ?></h2>
+                                        <p class="m-b-0 text-muted">Total customers</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="avatar avatar-icon avatar-lg avatar-gold">
+                                        <i class="anticon anticon-line-chart"></i>
+                                    </div>
+                                    <div class="m-l-15">
+                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_complete_order); ?></h2>
+                                        <p class="m-b-0 text-muted">Total completed orders</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="avatar avatar-icon avatar-lg avatar-purple">
+                                        <i class="anticon anticon-profile"></i>
+                                    </div>
+                                    <div class="m-l-15">
+                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_request_order) ?></h2>
+                                        <p class="m-b-0 text-muted">Orders in request</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Content Wrapper END -->
-
-                <!-- Footer START -->
-                <?php include("includes/footer.php"); ?>
-                <!-- Footer END -->
-
             </div>
-            <!-- Page Container END -->
-
-            <!-- Search Start-->
-            <?php include("includes/searchBAR.php"); ?>
-            <!-- Search End-->
+            <!-- Content Wrapper END -->
         </div>
     </div>
 

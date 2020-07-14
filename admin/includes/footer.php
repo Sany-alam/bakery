@@ -1,4 +1,4 @@
-<footer class="footer">
+<!-- <footer class="footer">
     <div class="footer-content">
         <p class="m-b-0">Copyright © 2020 abc. All rights reserved.</p>
         <span>
@@ -6,4 +6,4 @@
             <a href="#" class="text-gray">Privacy &amp; Policy</a>
         </span>
     </div>
-</footer>
+</footer> -->
