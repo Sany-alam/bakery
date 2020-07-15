@@ -7,5 +7,5 @@
 
 	$conn= mysqli_connect($host,$user,$password,$db) or die('unable to connect');
 
-
+	session_start();
 ?>

@@ -1,7 +1,5 @@
-<?php session_start();
+<?php
 include("../connection.php");
-
-
 
 if (isset($_POST['order'])) {
     date_default_timezone_set('Asia/Dhaka');

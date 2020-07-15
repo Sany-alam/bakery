@@ -94,6 +94,14 @@
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <a href="courier.php">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-appstore"></i>
+                                </span>
+                                <span class="title">Courier</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -130,10 +138,6 @@
                 </div>
                 <!-- Content Wrapper END -->
 
-                <!-- Footer START -->
-                <?php include("includes/footer.php"); ?>
-                <!-- Footer END -->
-
             </div>
             <!-- Page Container END -->
 
@@ -142,10 +146,6 @@
 
     <!-- Core Vendors JS -->
     <script src="assets/js/vendors.min.js"></script>
-
-    <!-- page js -->
-    <script src="assets/vendors/chartjs/Chart.min.js"></script>
-    <!-- <script src="assets/js/pages/dashboard-default.js"></script> -->
 
     <!-- Core JS -->
     <script src="assets/js/app.min.js"></script>

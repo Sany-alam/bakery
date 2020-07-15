@@ -6,16 +6,16 @@ function show_items() {
     var formdata = new FormData();
     formdata.append("display_item","display_item");
     $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        $("#item").html(data);
-    },
-    cache:false
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data)
+        {
+            $("#item").html(data);
+        },
+        cache:false
     });
 }
 

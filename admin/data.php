@@ -1,6 +1,94 @@
 <?php
 include("../connection.php");
 
+if (isset($_POST['update_courier'])) {
+    $id = $_POST['courier_id'];
+    $name = $_POST['courier_name'];
+    $phone = $_POST['courier_phone'];
+    $password = $_POST['courier_password'];
+    $sql = "UPDATE `courier` SET `name`='$name',`phone`='$phone',`password`='$password' WHERE `id` = '$id'";
+    $res = mysqli_query($conn,$sql);
+    if ($res) {
+        echo "Done";
+    }else{
+        echo "error";
+    }
+}
+
+if (isset($_POST['edit_courier'])) {
+    $id = $_POST['id'];
+    $sql = "SELECT * FROM `courier` WHERE `id` = '$id'";
+    $res = mysqli_query($conn,$sql);
+    $item = mysqli_fetch_array($res);
+    echo json_encode($item);
+}
+
+if (isset($_POST['delete_couriers'])) {
+    $id = $_POST['id'];
+    $sql = "DELETE FROM `courier` WHERE `id` = '$id'";
+    $res = mysqli_query($conn,$sql);
+}
+
+if (isset($_POST['couriers'])) {
+    $sql = "SELECT * FROM `courier` ORDER BY id desc";
+    $res = mysqli_query($conn,$sql);
+    ?>
+    <div class="mt-5 table-responsive">
+        <table class="table table-hover e-commerce-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Password</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($fetch = mysqli_fetch_array($res)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $fetch['id']; ?></td>
+                        <td><?php echo $fetch['name']; ?></td>
+                        <td><?php echo $fetch['phone']; ?></td>
+                        <td><?php echo $fetch['password']; ?></td>
+                        <td>
+                            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right" onclick="edit_courier(<?php echo $fetch['id']; ?>)">
+                                <i class="anticon anticon-edit"></i>
+                            </button>
+                            <button class="btn btn-icon btn-hover btn-sm btn-rounded" onclick="delete_courier(<?php echo $fetch['id']; ?>)">
+                                <i class="anticon anticon-delete"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="assets/vendors/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/pages/e-commerce-order-list.js"></script>
+    <?php
+}
+
+if (isset($_POST['add_courier'])) {
+    $courier_name = $_POST['courier_name'];
+    $courier_phone = $_POST['courier_phone'];
+    $courier_password = $_POST['courier_password'];
+
+    $sql = "SELECT * FROM `courier` WHERE `name` = '$courier_name'";
+    $res = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($res)>0) {
+        echo "Courier exists";
+    }
+    else {
+        $sql = "INSERT INTO `courier`(`name`, `phone`,`password`) VALUES ('$courier_name','$courier_phone','$courier_password')";
+        $res = mysqli_query($conn,$sql);
+    }
+}
 
 if (isset($_POST['complete_orders'])) {
         $sql = "SELECT * FROM `orders` where `status` = 'complete'";
@@ -47,11 +135,6 @@ if (isset($_POST['on_delivery_courier_detail'])) {
     <div class="row align-items-center">
         <div class="col-md-7">
             <div class="d-md-flex align-items-center">
-                <div class="text-center text-sm-left ">
-                    <div class="avatar avatar-image" style="width: 150px; height:150px">
-                        <img src="<?php echo $item['img']; ?>" alt="">
-                    </div>
-                </div>
                 <div class="text-center text-sm-left m-v-15 p-l-30">
                     <h2 class="m-b-5"><?php echo $item['name']; ?></h2>
                 </div>
@@ -79,7 +162,7 @@ if (isset($_POST['on_delivery_courier_detail'])) {
 
 
 if (isset($_POST['show_pending_orders'])) {
-    $sql = "SELECT * from `orders` where `status` != 'request' and `status` != 'complete' group by order_no desc";
+    $sql = "SELECT * from `orders` where `status` = 'processing' group by order_no desc";
     $res = mysqli_query($conn,$sql);
     if (mysqli_num_rows($res)>0) {
         while ($item = mysqli_fetch_assoc($res)) {
@@ -102,7 +185,7 @@ if (isset($_POST['show_pending_orders'])) {
                 <td><?php echo $item['order_date'] ?></td>
                 <td>
                     <?php 
-                    $courier = $item['status'];
+                    $courier = $item['courier'];
                     $sql1 = "SELECT * FROM `courier` WHERE `id` = '$courier'";
                     $res1 = mysqli_query($conn,$sql1);
                     $item1 = mysqli_fetch_assoc($res1);
@@ -129,7 +212,7 @@ if (isset($_POST['show_pending_orders'])) {
 if (isset($_POST['assign_courier'])) {
     $id = $_POST['courier_id'];
     $order_no = $_POST['order_no'];
-    $sql = "UPDATE `orders` SET `status`= '$id' WHERE `order_no` = '$order_no'";
+    $sql = "UPDATE `orders` SET `courier`= '$id',`status`= 'processing' WHERE `order_no` = '$order_no'";
     $res = mysqli_query($conn,$sql);
 
     $sql1 = "UPDATE `courier` SET `status`= '1' WHERE `id` = '$id'";
@@ -200,10 +283,10 @@ if (isset($_POST['product_det'])) {
     if (mysqli_num_rows($res)>0) {
         ?>
              <table class="table table-hover">
-                                    <thead>
-                                        <tr role="row"><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending" style="width: 14px;">ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending" style="width: 138px;">Product</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 67px;">Quantity</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 36px;">Price</th></tr>
-                                    </thead>
-                                    <tbody>
+            <thead>
+                <tr role="row"><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending" style="width: 14px;">ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending" style="width: 138px;">Product</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 67px;">Quantity</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 36px;">Price</th></tr>
+            </thead>
+            <tbody>
             <?php
             $total = 0;
         while ($item = mysqli_fetch_array($res)) {

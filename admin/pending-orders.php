@@ -1,6 +1,5 @@
 <?php
 include("../connection.php");
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -97,6 +96,14 @@ session_start();
                                     <a href="complete-orders.php">Complete Orders</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="courier.php">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-appstore"></i>
+                                </span>
+                                <span class="title">Courier</span>
+                            </a>
                         </li>
                     </ul>
                 </div>

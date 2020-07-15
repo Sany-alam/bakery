@@ -1,9 +1,5 @@
 <?php
 include("../connection.php");
-session_start();
-// if change project -- 1:l&s.php 2:login.php 3:signup.php 4:loginValidation.js 5:signupValidaion.js then copy tha database table or create a database 'admin' which will have signup queryies collumn names!
-
-
 // check name
 if (isset($_POST['name_check'])) {
   $name = $_POST['name'];

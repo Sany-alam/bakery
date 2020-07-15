@@ -6,7 +6,6 @@ $(function(){
     category_list();
 });
 
-
 function complete_orders() {
     var formdata = new FormData();
     formdata.append("complete_orders","complete_orders");
@@ -65,7 +64,6 @@ function show_pending_orders() {
 
 function assign_courier(id){
     var order_no = $("#hidden-order-no").val();
-    // alert(order_no+" "+id);
     var formdata = new FormData();
     formdata.append("courier_id",id);
     formdata.append("order_no",order_no);
@@ -112,20 +110,18 @@ function product_detail(order_no) {
         var formdata = new FormData();
         formdata.append("courier_list","courier_list");
         $.ajax({
-        processData:false,
-        contentType:false,
-        data:formdata,
-        type:"post",
-        url:"data.php",
-        success:function(data)
-        {
-            $("#c-li").html(data);
-            
-        },
-        cache:false
+            processData:false,
+            contentType:false,
+            data:formdata,
+            type:"post",
+            url:"data.php",
+            success:function(data)
+            {
+                $("#c-li").html(data);
+                $("#assign-courier-modal").modal('show');
+            },
+            cache:false
         });
-
-        $("#assign-courier-modal").modal('show');
     });
 
 }
