@@ -137,9 +137,6 @@
             </div>
             <!-- Page Container END -->
 
-            <!-- Search Start-->
-            <?php include("includes/searchBAR.php"); ?>
-            <!-- Search End-->
         </div>
     </div>
 

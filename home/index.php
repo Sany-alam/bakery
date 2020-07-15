@@ -58,7 +58,7 @@ if (!isset($_SESSION['cart'])) {
         <div class="spinner"></div>
     </div> -->
     <!-- search-form here -->
-    <div class="search-area flex-style">
+    <!-- <div class="search-area flex-style">
         <span class="closebar">Close</span>
         <div class="container">
             <div class="row">
@@ -72,7 +72,7 @@ if (!isset($_SESSION['cart'])) {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- search-form here -->
     <!-- header-area start -->
     <header class="header-area">

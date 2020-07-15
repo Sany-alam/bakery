@@ -20,14 +20,14 @@
                                 <li><a href="blog-details.html">blog Details</a></li>
                             </ul>
                         </li> -->
-                        <li><a href="javascript:void(0)">Foods</a></li>
-                        <li><a href="javascript:void(0)">Contact</a></li>
+                        <!-- <li><a href="javascript:void(0)">Foods</a></li>
+                        <li><a href="javascript:void(0)">Contact</a></li> -->
                     </ul>
                 </nav>
             </div>
             <div class="col-md-4 col-lg-2 col-sm-5 col-4">
                 <ul class="search-cart-wrapper d-flex">
-                    <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li>
+                    <!-- <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li> -->
                     <!-- cart.php -->
                     <li><a href="cart.php"><i class="flaticon-shop"></i> 
                     <span id="countCart"></span>

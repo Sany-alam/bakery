@@ -31,12 +31,12 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-8 col-sm-12">
+                    <div class="col-lg-5 col-md-8 col-sm-12">
                         <div class="footer-content">
                             <p>On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure righteous indignation and dislike</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-8 col-sm-12">
+                    <div class="col-lg-5 col-md-8 col-sm-12">
                         <div class="footer-adress">
                             <ul>
                                 <li><a href="javascript:void(0)"><span>Email:</span> domain@gmail.com</a></li>
@@ -45,13 +45,13 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-12">
+                    <!-- <div class="col-lg-3 col-md-4 col-sm-12">
                         <div class="footer-reserved">
                             <ul>
                                 <li>Copyright © 2019 abc.</li>
                             </ul>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
