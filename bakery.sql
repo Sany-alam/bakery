@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 08:31 AM
+-- Generation Time: Jul 15, 2020 at 08:56 AM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -29,9 +29,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
-  `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
@@ -45,9 +45,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`first_name`, `last_name`, `id`, `name`, `email`, `password`, `phone`, `address`, `city`, `language`) VALUES
-('Mazharul', 'Alam', 2, 'Sany', 'mazharulalam26@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'Bangla'),
-('Sany', 'Alam', 3, 'sany1', 'playerc950@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'English');
+INSERT INTO `admin` (`id`, `first_name`, `last_name`, `name`, `email`, `password`, `phone`, `address`, `city`, `language`) VALUES
+(1, 'Mazharul', 'Alam', 'Sany', 'mazharulalam26@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'Bangla'),
+(2, 'Sany', 'Alam', 'sany1', 'playerc950@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'English');
 
 -- --------------------------------------------------------
 
@@ -91,7 +91,7 @@ CREATE TABLE `courier` (
 INSERT INTO `courier` (`id`, `name`, `phone`, `status`, `img`) VALUES
 (1, 'robert', '+8801811111111', 1, '../assets/images/robert.png'),
 (2, 'shajib', '01812222222', 1, ''),
-(3, 'zozo', '018********', 0, '');
+(3, 'zozo', '018********', 1, '');
 
 -- --------------------------------------------------------
 
@@ -154,12 +154,18 @@ INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `
 (21, 'Sany', 'bxhxh@gmail.con', '018177227743', 'Rahmannagar', '18', 2, 5, 'complete', '25-01-2020', ''),
 (22, 'rafi', 'mazharulalam26@gmail.com', '01876626011', 'Rahmannagar ', '24', 1, 6, '2', '26-01-2020', ''),
 (23, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 3, 7, 'request', '15-07-2020', ''),
-(24, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '22', 2, 8, 'request', '15-07-2020', ''),
-(25, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '24', 6, 8, 'request', '15-07-2020', '');
+(24, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '22', 2, 8, '3', '15-07-2020', ''),
+(25, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '24', 6, 8, '3', '15-07-2020', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -188,6 +194,12 @@ ALTER TABLE `orders`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
