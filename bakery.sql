@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jan 26, 2020 at 05:45 PM
--- Server version: 5.7.29-cll-lve
--- PHP Version: 7.3.6
+-- Host: 127.0.0.1
+-- Generation Time: Jul 15, 2020 at 08:31 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `zubreinc_bakery`
+-- Database: `bakery`
 --
 
 -- --------------------------------------------------------
@@ -91,7 +91,7 @@ CREATE TABLE `courier` (
 INSERT INTO `courier` (`id`, `name`, `phone`, `status`, `img`) VALUES
 (1, 'robert', '+8801811111111', 1, '../assets/images/robert.png'),
 (2, 'shajib', '01812222222', 1, ''),
-(3, 'zozo', '018********', 1, '');
+(3, 'zozo', '018********', 0, '');
 
 -- --------------------------------------------------------
 
@@ -151,8 +151,11 @@ INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `
 (18, 'jahed', 'mazharulalam26@gmail.com', '01876626011', 'Rahmannagar ', '19', 1, 3, 'complete', '27-12-2019', '31-12-2019'),
 (19, 'shajib', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar ', '19', 3, 4, 'request', '27-12-2019', ''),
 (20, 'shajib', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar ', '18', 1, 4, 'request', '27-12-2019', ''),
-(21, 'Sany', 'bxhxh@gmail.con', '018177227743', 'Rahmannagar', '18', 2, 5, '3', '25-01-2020', ''),
-(22, 'rafi', 'mazharulalam26@gmail.com', '01876626011', 'Rahmannagar ', '24', 1, 6, '2', '26-01-2020', '');
+(21, 'Sany', 'bxhxh@gmail.con', '018177227743', 'Rahmannagar', '18', 2, 5, 'complete', '25-01-2020', ''),
+(22, 'rafi', 'mazharulalam26@gmail.com', '01876626011', 'Rahmannagar ', '24', 1, 6, '2', '26-01-2020', ''),
+(23, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 3, 7, 'request', '15-07-2020', ''),
+(24, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '22', 2, 8, 'request', '15-07-2020', ''),
+(25, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '24', 6, 8, 'request', '15-07-2020', '');
 
 --
 -- Indexes for dumped tables
@@ -208,7 +211,7 @@ ALTER TABLE `item-detail`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
