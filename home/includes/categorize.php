@@ -29,13 +29,6 @@ $res = mysqli_query($conn,$sql);
                 <div class="product-content">
                     <h3><a href="single-product.html"><?php echo $item['name'] ?></a></h3>
                     <p class="pull-left"><?php echo $item['price'] ?>Tk</p>
-                    <!-- <ul class="pull-right d-flex">
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star"></i></li>
-                        <li><i class="fa fa-star-half-o"></i></li>
-                    </ul> -->
                 </div>
             </div>
         </li>

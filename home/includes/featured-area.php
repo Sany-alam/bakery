@@ -1,5 +1,6 @@
 <div class="featured-area featured-area2">
         <div class="container">
+            <div style="text-align:center;"><h1 style="color:#ef4836;display:inline-block;">FEATURED AREA</h1></div>
             <div class="row">
                 <div class="col-12">
                     <div class="featured-active2 owl-carousel next-prev-style">

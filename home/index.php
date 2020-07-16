@@ -53,30 +53,8 @@ if (!isset($_SESSION['cart'])) {
 </head>
 
 <body>
-    <!--Start Preloader-->
-    <!-- <div class="preloader-wrap">
-        <div class="spinner"></div>
-    </div> -->
-    <!-- search-form here -->
-    <!-- <div class="search-area flex-style">
-        <span class="closebar">Close</span>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2 col-12">
-                    <div class="search-form">
-                        <form action="javascript:void(0)">
-                            <input type="text" placeholder="Search Here...">
-                            <button><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <!-- search-form here -->
     <!-- header-area start -->
     <header class="header-area">
-        <?php //include("includes/header-top.php"); ?>
         <?php include("includes/header-bottom.php"); ?>
     </header>
     <!-- header-area end -->
@@ -115,7 +93,7 @@ if (!isset($_SESSION['cart'])) {
                     <div class="banner-wrap">
                         <p>Birthday Cake</p>
                         <h2>upto<span>50%</span> Off</h2>
-                        <a href="javascript:void(0)">Shop Now</a>
+                        <!-- <a href="javascript:void(0)">Shop Now</a> -->
                     </div>
                 </div>
             </div>
@@ -164,10 +142,10 @@ if (!isset($_SESSION['cart'])) {
         </div>
     </div>
     <!-- start social-newsletter-section -->
-    <?php include("includes/subscription.php"); ?>
+    <!-- <?php include("includes/subscription.php"); ?> -->
     <!-- end social-newsletter-section -->
     <!-- .footer-area start -->
-    <?php include("includes/footer.php"); ?>
+    <!-- <?php include("includes/footer.php"); ?> -->
     <!-- .footer-area end -->
     <!-- Modal area start -->
     <?php include("includes/cartmodal.php"); ?>
@@ -201,7 +179,4 @@ if (!isset($_SESSION['cart'])) {
     <!-- custom java scripts and ajax -->
     <script src="assets/js/custom.js"></script>
 </body>
-
-
-<!-- Mirrored from themepresss.com/tf/html/tohoney/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Dec 2019 08:47:01 GMT -->
 </html>
