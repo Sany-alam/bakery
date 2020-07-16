@@ -44,7 +44,6 @@ if (isset($_SESSION['courier'])) {
                         <th>Customer Address</th>
                         <th>Customer Phone</th>
                         <th>Products</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="orde-table">
@@ -82,7 +81,7 @@ if (isset($_SESSION['courier'])) {
         });
         function show_order() {
             formdata = new FormData();
-            formdata.append('order_requests','order_requests');
+            formdata.append('my_complete_order','my_complete_order');
             $.ajax({
                 processData:false,
                 contentType:false,
@@ -92,24 +91,6 @@ if (isset($_SESSION['courier'])) {
                 success:function(data)
                 {
                     $("#orde-table").html(data);
-                },
-                cache:false
-            });
-        }
-        function complete_order(id){
-            formdata = new FormData();
-            formdata.append('order_id',id);
-            formdata.append('order_complete','order_complete');
-            $.ajax({
-                processData:false,
-                contentType:false,
-                data:formdata,
-                type:"post",
-                url:"data.php",
-                success:function(data)
-                {
-                    show_order()
-                    console.log(data);
                 },
                 cache:false
             });

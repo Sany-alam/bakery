@@ -91,7 +91,7 @@ if (isset($_POST['add_courier'])) {
 }
 
 if (isset($_POST['complete_orders'])) {
-        $sql = "SELECT * FROM `orders` where `status` = 'complete'";
+        $sql = "SELECT * FROM `orders` where `status` = 'complete' GROUP BY `order_no`";
         $res = mysqli_query($conn,$sql);
         while ($item = mysqli_fetch_assoc($res)) {
         ?>
@@ -110,9 +110,25 @@ if (isset($_POST['complete_orders'])) {
                 <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
             </div>
         </td>
+        <td>
+            <?php 
+            $courier = $item['courier'];
+            $sql1 = "SELECT * FROM `courier` WHERE `id` = '$courier'";
+            $res1 = mysqli_query($conn,$sql1);
+            $item1 = mysqli_fetch_assoc($res1);
+            ?>
+            <a href="javascript:void(0)" onclick="on_delivery_courier_detail(<?php echo $item1['id']; ?>)">
+                <?php echo $item1['name']; ?>
+            </a>
+        </td>
         <td><?php echo $item['order_date'] ?></td>
         <td>
         <?php echo $item['complete_order_date'] ?>
+        </td>
+        <td>
+            <button onclick="product_detail(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
+                Products
+            </button>
         </td>
         <td>
             <div class="d-flex align-items-center">
@@ -147,7 +163,6 @@ if (isset($_POST['on_delivery_courier_detail'])) {
                     <ul class="list-unstyled m-t-10">
                         <li class="row">
                             <p class="col-sm-4 col-4 font-weight-semibold text-dark m-b-5">
-                                <i class="m-r-10 text-primary anticon anticon-phone"></i>
                                 <span>Phone: </span> 
                             </p>
                             <p class="col font-weight-semibold"> <?php echo $item['phone']; ?></p>
@@ -182,7 +197,6 @@ if (isset($_POST['show_pending_orders'])) {
                         <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
                     </div>
                 </td>
-                <td><?php echo $item['order_date'] ?></td>
                 <td>
                     <?php 
                     $courier = $item['courier'];
@@ -193,6 +207,12 @@ if (isset($_POST['show_pending_orders'])) {
                     <a href="javascript:void(0)" onclick="on_delivery_courier_detail(<?php echo $item1['id']; ?>)">
                         <?php echo $item1['name']; ?>
                     </a>
+                </td>
+                <td><?php echo $item['order_date'] ?></td>
+                <td>
+                    <button onclick="product_detail(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
+                        Products
+                    </button>
                 </td>
                 <td>
                     <div class="d-flex align-items-center">
@@ -282,7 +302,7 @@ if (isset($_POST['product_det'])) {
     $res = mysqli_query($conn,$sql);
     if (mysqli_num_rows($res)>0) {
         ?>
-             <table class="table table-hover">
+            <table class="table table-hover">
             <thead>
                 <tr role="row"><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ID: activate to sort column ascending" style="width: 14px;">ID</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending" style="width: 138px;">Product</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Category: activate to sort column ascending" style="width: 67px;">Quantity</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 36px;">Price</th></tr>
             </thead>

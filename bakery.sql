@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 08:56 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Jul 16, 2020 at 10:15 AM
+-- Server version: 10.4.13-MariaDB
+-- PHP Version: 7.3.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -29,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
+  `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
@@ -45,9 +44,9 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `first_name`, `last_name`, `name`, `email`, `password`, `phone`, `address`, `city`, `language`) VALUES
-(1, 'Mazharul', 'Alam', 'Sany', 'mazharulalam26@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'Bangla'),
-(2, 'Sany', 'Alam', 'sany1', 'playerc950@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'English');
+INSERT INTO `admin` (`first_name`, `last_name`, `id`, `name`, `email`, `password`, `phone`, `address`, `city`, `language`) VALUES
+('Mazharul', 'Alam', 2, 'Sany', 'mazharulalam26@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'Bangla'),
+('Sany', 'Alam', 3, 'sany1', 'playerc950@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'English');
 
 -- --------------------------------------------------------
 
@@ -81,17 +80,18 @@ CREATE TABLE `courier` (
   `name` text NOT NULL,
   `phone` text NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `img` text NOT NULL
+  `password` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `courier`
 --
 
-INSERT INTO `courier` (`id`, `name`, `phone`, `status`, `img`) VALUES
-(1, 'robert', '+8801811111111', 1, '../assets/images/robert.png'),
-(2, 'shajib', '01812222222', 1, ''),
-(3, 'zozo', '018********', 1, '');
+INSERT INTO `courier` (`id`, `name`, `phone`, `status`, `password`) VALUES
+(1, 'robert', '+8801854454', 0, 'asdf'),
+(2, 'shajib', '01812222222', 0, '123'),
+(3, 'zozo', '656666256', 0, 'asd'),
+(4, 'Sany', '01876626011', 0, 'asd');
 
 -- --------------------------------------------------------
 
@@ -136,36 +136,24 @@ CREATE TABLE `orders` (
   `order_no` int(11) NOT NULL,
   `status` text NOT NULL,
   `order_date` text NOT NULL,
-  `complete_order_date` text NOT NULL
+  `complete_order_date` text NOT NULL,
+  `courier` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `product_quantity`, `order_no`, `status`, `order_date`, `complete_order_date`) VALUES
-(16, 'sany', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar ', '18', 4, 2, 'request', '27-12-2019', ''),
-(15, 'rafi', 'playerc950@gmail.com', '01876626011', 'Rahmannagar ', '18', 2, 1, '1', '27-12-2019', ''),
-(14, 'rafi', 'playerc950@gmail.com', '01876626011', 'Rahmannagar ', '19', 2, 1, '1', '27-12-2019', ''),
-(17, 'sany', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar ', '19', 4, 2, 'request', '27-12-2019', ''),
-(18, 'jahed', 'mazharulalam26@gmail.com', '01876626011', 'Rahmannagar ', '19', 1, 3, 'complete', '27-12-2019', '31-12-2019'),
-(19, 'shajib', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar ', '19', 3, 4, 'request', '27-12-2019', ''),
-(20, 'shajib', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar ', '18', 1, 4, 'request', '27-12-2019', ''),
-(21, 'Sany', 'bxhxh@gmail.con', '018177227743', 'Rahmannagar', '18', 2, 5, 'complete', '25-01-2020', ''),
-(22, 'rafi', 'mazharulalam26@gmail.com', '01876626011', 'Rahmannagar ', '24', 1, 6, '2', '26-01-2020', ''),
-(23, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 3, 7, 'request', '15-07-2020', ''),
-(24, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '22', 2, 8, '3', '15-07-2020', ''),
-(25, 'Sany', 'wizardreass@fd.dcc', '01876626011', 'Rahmannagar', '24', 6, 8, '3', '15-07-2020', '');
+INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `product_quantity`, `order_no`, `status`, `order_date`, `complete_order_date`, `courier`) VALUES
+(28, 'Computer', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar', '23', 2, 3, 'complete', '16-07-2020', '2020-07-16', 4),
+(27, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 2, 2, 'complete', '16-07-2020', '2020-07-16', 4),
+(24, 'Men', 'mazharalam753@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '23', 2, 1, 'complete', '16-07-2020', '2020-07-16', 1),
+(26, 'Men', 'mazharalam753@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '21', 1, 1, 'complete', '16-07-2020', '2020-07-16', 1),
+(25, 'Men', 'mazharalam753@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '22', 3, 1, 'complete', '16-07-2020', '2020-07-16', 1);
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -196,12 +184,6 @@ ALTER TABLE `orders`
 --
 
 --
--- AUTO_INCREMENT for table `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -211,7 +193,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `courier`
 --
 ALTER TABLE `courier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `item-detail`
@@ -223,7 +205,7 @@ ALTER TABLE `item-detail`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

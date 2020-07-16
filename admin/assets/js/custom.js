@@ -89,19 +89,18 @@ function product_detail(order_no) {
     formdata.append("order_no",order_no);
     formdata.append("product_det","product_det");
     $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        $("#p-li").html(data);
-        
-    },
-    cache:false
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data)
+        {
+            $("#p-li").html(data);
+            $("#products-detail-modal").modal('show');
+        },
+        cache:false
     });
-    $("#products-detail-modal").modal('show');
     $("#assign-courier").click(function(){
         $("#products-detail-modal").modal('hide');
         $("#order-no").text("Order No #"+order_no);
@@ -123,7 +122,6 @@ function product_detail(order_no) {
             cache:false
         });
     });
-
 }
 
 

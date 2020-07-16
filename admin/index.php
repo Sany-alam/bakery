@@ -1,7 +1,6 @@
 <?php
-session_start();
+include("../connection.php");
 if (isset($_SESSION['admin'])) {
-    include("../connection.php");
     $sql_item = "SELECT * FROM `item-detail`";
     $res_item = mysqli_query($conn,$sql_item);
 

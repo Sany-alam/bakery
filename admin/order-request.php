@@ -138,7 +138,7 @@ include("../connection.php");
                                             <th>ID</th>
                                             <th>Customer</th>
                                             <th>Date</th>
-                                            <th>#Action</th>
+                                            <th>Products</th>
                                         </tr>
                                     </thead>
                                     <tbody id="order-req">
