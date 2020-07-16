@@ -20,6 +20,7 @@ if (isset($_SESSION['admin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>To-honey - Admin</title>
     <!-- Core css -->
+    <link href="assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/app.min.css" rel="stylesheet">
 </head>
 <body>
@@ -36,62 +37,74 @@ if (isset($_SESSION['admin'])) {
             <div class="page-container">
                 <!-- Content Wrapper START -->
                 <div class="main-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media align-items-center">
-                                    <div class="avatar avatar-icon avatar-lg avatar-blue">
-                                    <i class="anticon anticon-database"></i>
-                                    </div>
-                                    <div class="m-l-15">
-                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_item); ?></h2>
-                                        <p class="m-b-0 text-muted">Total Items</p>
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center pt-2">
+                            <h5>Total sell</h5>
+                            <div class="form-row align-items-center pb-2">
+                                <label for="date">Select a date : </label>
+                                <input id="date" type="date" class="form-control col mx-2" id="date">
+                            </div>
+                        </div>
+                        <div id="table">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="avatar avatar-icon avatar-lg avatar-blue">
+                                        <i class="anticon anticon-database"></i>
+                                        </div>
+                                        <div class="m-l-15">
+                                            <h2 class="m-b-0"><?php echo mysqli_num_rows($res_item); ?></h2>
+                                            <p class="m-b-0 text-muted">Total Items</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media align-items-center">
-                                    <div class="avatar avatar-icon avatar-lg avatar-cyan">
-                                        <i class="anticon anticon-user"></i>
-                                    </div>
-                                    <div class="m-l-15">
-                                    <h2 class="m-b-0"><?php echo mysqli_num_rows($res_customer); ?></h2>
-                                        <p class="m-b-0 text-muted">Total customers</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media align-items-center">
-                                    <div class="avatar avatar-icon avatar-lg avatar-gold">
-                                        <i class="anticon anticon-line-chart"></i>
-                                    </div>
-                                    <div class="m-l-15">
-                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_complete_order); ?></h2>
-                                        <p class="m-b-0 text-muted">Total completed orders</p>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="avatar avatar-icon avatar-lg avatar-cyan">
+                                            <i class="anticon anticon-user"></i>
+                                        </div>
+                                        <div class="m-l-15">
+                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_customer); ?></h2>
+                                            <p class="m-b-0 text-muted">Total customers</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="media align-items-center">
-                                    <div class="avatar avatar-icon avatar-lg avatar-purple">
-                                        <i class="anticon anticon-profile"></i>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="avatar avatar-icon avatar-lg avatar-gold">
+                                            <i class="anticon anticon-line-chart"></i>
+                                        </div>
+                                        <div class="m-l-15">
+                                            <h2 class="m-b-0"><?php echo mysqli_num_rows($res_complete_order); ?></h2>
+                                            <p class="m-b-0 text-muted">Total completed orders</p>
+                                        </div>
                                     </div>
-                                    <div class="m-l-15">
-                                        <h2 class="m-b-0"><?php echo mysqli_num_rows($res_request_order) ?></h2>
-                                        <p class="m-b-0 text-muted">Orders in request</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="media align-items-center">
+                                        <div class="avatar avatar-icon avatar-lg avatar-purple">
+                                            <i class="anticon anticon-profile"></i>
+                                        </div>
+                                        <div class="m-l-15">
+                                            <h2 class="m-b-0"><?php echo mysqli_num_rows($res_request_order) ?></h2>
+                                            <p class="m-b-0 text-muted">Orders in request</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -31,7 +31,7 @@ if (isset($_POST['my_complete_order'])) {
 
 if (isset($_POST['order_complete'])) {
     date_default_timezone_set('Asia/Dhaka');
-    $date = date('Y-m-d');
+    $date = date('d-m-Y');
     $id = $_POST['order_id'];
     $user = $_SESSION['courier']['id'];
     $sql= "UPDATE `orders` SET `status`='complete',`complete_order_date`='$date' WHERE `order_no` = '$id' AND `status` = 'processing'";

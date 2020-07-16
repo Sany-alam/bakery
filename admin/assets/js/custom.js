@@ -6,6 +6,24 @@ $(function(){
     category_list();
 });
 
+$("#date").change(function () {
+    var formdata = new FormData();
+    formdata.append("sell_by_day","sell_by_day");
+    formdata.append("date",$("#date").val());
+    $.ajax({
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data)
+        {
+            $("#table").html(data);
+        },
+        cache:false
+    });
+});
+
 function complete_orders() {
     var formdata = new FormData();
     formdata.append("complete_orders","complete_orders");
@@ -29,17 +47,17 @@ function on_delivery_courier_detail(id) {
     formdata.append("on_delivery_courier_detail","on_delivery_courier_detail");
     formdata.append("id",id);
     $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        $("#delivery-courier-detail").html(data);
-        $(".delivery-courier-detail").modal('show');
-    },
-    cache:false
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data)
+        {
+            $("#delivery-courier-detail").html(data);
+            $(".delivery-courier-detail").modal('show');
+        },
+        cache:false
     });
 }
 
@@ -48,16 +66,16 @@ function show_pending_orders() {
     var formdata = new FormData();
     formdata.append("show_pending_orders","show_pending_orders");
     $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        $("#order-on-delivery").html(data);
-    },
-    cache:false
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data)
+        {
+            $("#order-on-delivery").html(data);
+        },
+        cache:false
     });
 }
 
@@ -69,18 +87,18 @@ function assign_courier(id){
     formdata.append("order_no",order_no);
     formdata.append("assign_courier","assign_courier");
     $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        show_order_req();
-        show_pending_orders();
-        $("#assign-courier-modal").modal('hide');
-    },
-    cache:false
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data)
+        {
+            show_order_req();
+            show_pending_orders();
+            $("#assign-courier-modal").modal('hide');
+        },
+        cache:false
     });
 }
 

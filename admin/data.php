@@ -1,6 +1,103 @@
 <?php
 include("../connection.php");
 
+if(isset($_POST['sell_by_day'])){
+    $date = $_POST['date'];
+    $pieces_of_date = explode("-",$date);
+    $new_date = $pieces_of_date[2]."-".$pieces_of_date[1]."-".$pieces_of_date[0];
+    $sql= "SELECT * FROM `orders` WHERE `status` = 'complete' AND `complete_order_date` = '$new_date' GROUP BY `order_no`";
+    $res = mysqli_query($conn,$sql);
+    ?>
+    <div class="card-body">
+        <div class="m-t-25 table-responsive">
+            <table id="data-table" class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                    <tr>
+                        <th>Order no</th>
+                        <th>Customer Name</th>
+                        <th>Customer Phone</th>
+                        <th>Customer Address</th>
+                        <th>Courier Detail</th>
+                        <th>Products</th>
+                    </tr>
+                    </tr>
+                </thead>
+                <tbody class="table-striped">
+                <?php 
+                $total = 0;
+                while ($fetch = mysqli_fetch_array($res)) {
+                    ?>
+                    <tr role="row" class="odd">
+                        <td>
+                            #<?php echo $fetch['order_no'] ?>
+                        </td>
+                        <td>
+                            <div class=" align-items-center">
+                                <h6 class="m-b-0"><?php echo $fetch['name'] ?></h6>
+                            </div>
+                        </td>
+                        <td>
+                            <div class=" align-items-center">
+                                <h6 class="m-b-0"><?php echo $fetch['phone'] ?></h6>
+                            </div>
+                        </td>
+                        <td>
+                            <div class=" align-items-center">
+                                <h6 class="m-b-0"><?php echo $fetch['address'] ?></h6>
+                            </div>
+                        </td>
+                        <td>
+                            <?php 
+                            $courier = $fetch['courier'];
+                            $sql1 = "SELECT * FROM `courier` WHERE `id` = '$courier'";
+                            $res1 = mysqli_query($conn,$sql1);
+                            $item1 = mysqli_fetch_assoc($res1);
+                            ?>
+                            <a href="javascript:void(0)" onclick="on_delivery_courier_detail(<?php echo $item1['id']; ?>)">
+                                <?php echo $item1['name']; ?>
+                            </a>
+                        </td>
+                        <td>
+                            <button onclick="product_detail(<?php echo $fetch['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
+                                Products
+                            </button>
+                        </td>
+                    </tr>
+                    <?php
+                }
+                $sql_total= "SELECT * FROM `orders` WHERE `status` = 'complete' AND `complete_order_date` = '$new_date'";
+                $res_total = mysqli_query($conn,$sql_total);
+                while ($fetch_total = mysqli_fetch_array($res_total)) {
+                    $p_quantity = $fetch_total['product_quantity'];
+                    $p_id = $fetch_total['product_id'];
+                    $sql_last = "SELECT * FROM `item-detail` where id = '$p_id'";
+                    $res_last = mysqli_query($conn,$sql_last);
+                    $item_last = mysqli_fetch_array($res_last);
+                    $total = $total+$item_last['price']*$p_quantity;
+                }
+                ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <h1>Total sell : <?php echo $total; ?>Tk</h1>
+    </div>
+    <script src='.asset("assets/admin/vendors/datatables/jquery.dataTables.min.js").'></script>
+    <script src='.asset("assets/admin/vendors/datatables/dataTables.bootstrap.min.js").'></script>
+    <script src='.asset("assets/admin/js/pages/datatables.js").'></script>
+    <script>
+    $("#data-table").DataTable({
+        // paging: false,
+        scrollY: 250,
+        order:[[0,"desc" ]],
+        responsive: true
+    });
+    </script>
+    <?php
+}
+
 if (isset($_POST['update_courier'])) {
     $id = $_POST['courier_id'];
     $name = $_POST['courier_name'];
@@ -95,48 +192,48 @@ if (isset($_POST['complete_orders'])) {
         $res = mysqli_query($conn,$sql);
         while ($item = mysqli_fetch_assoc($res)) {
         ?>
-    <tr role="row" class="odd">
-        <td class="sorting_1">
-            <div class="checkbox">
-                <input id="check-item-1" type="checkbox">
-                <label for="check-item-1" class="m-b-0"></label>
-            </div>
-        </td>
-        <td>
-            #<?php echo $item['order_no'] ?>
-        </td>
-        <td>
-            <div class=" align-items-center">
-                <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
-            </div>
-        </td>
-        <td>
-            <?php 
-            $courier = $item['courier'];
-            $sql1 = "SELECT * FROM `courier` WHERE `id` = '$courier'";
-            $res1 = mysqli_query($conn,$sql1);
-            $item1 = mysqli_fetch_assoc($res1);
-            ?>
-            <a href="javascript:void(0)" onclick="on_delivery_courier_detail(<?php echo $item1['id']; ?>)">
-                <?php echo $item1['name']; ?>
-            </a>
-        </td>
-        <td><?php echo $item['order_date'] ?></td>
-        <td>
-        <?php echo $item['complete_order_date'] ?>
-        </td>
-        <td>
-            <button onclick="product_detail(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
-                Products
-            </button>
-        </td>
-        <td>
-            <div class="d-flex align-items-center">
-                <div class="badge badge-success badge-dot m-r-10"></div>
-                <div>Complete Order</div>
-            </div>
-        </td>
-    </tr>
+        <tr role="row" class="odd">
+            <td class="sorting_1">
+                <div class="checkbox">
+                    <input id="check-item-1" type="checkbox">
+                    <label for="check-item-1" class="m-b-0"></label>
+                </div>
+            </td>
+            <td>
+                #<?php echo $item['order_no'] ?>
+            </td>
+            <td>
+                <div class=" align-items-center">
+                    <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
+                </div>
+            </td>
+            <td>
+                <?php 
+                $courier = $item['courier'];
+                $sql1 = "SELECT * FROM `courier` WHERE `id` = '$courier'";
+                $res1 = mysqli_query($conn,$sql1);
+                $item1 = mysqli_fetch_assoc($res1);
+                ?>
+                <a href="javascript:void(0)" onclick="on_delivery_courier_detail(<?php echo $item1['id']; ?>)">
+                    <?php echo $item1['name']; ?>
+                </a>
+            </td>
+            <td><?php echo $item['order_date'] ?></td>
+            <td>
+            <?php echo $item['complete_order_date'] ?>
+            </td>
+            <td>
+                <button onclick="product_detail(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
+                    Products
+                </button>
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <div class="badge badge-success badge-dot m-r-10"></div>
+                    <div>Complete Order</div>
+                </div>
+            </td>
+        </tr>
         <?php
         }
 }
