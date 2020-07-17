@@ -27,7 +27,7 @@ $res = mysqli_query($conn,$sql);
                     </div>
                 </div>
                 <div class="product-content">
-                    <h3><a href="single-product.html"><?php echo $item['name'] ?></a></h3>
+                    <h3><a href="javascript:void(0)"><?php echo $item['name'] ?></a></h3>
                     <p class="pull-left"><?php echo $item['price'] ?>Tk</p>
                 </div>
             </div>

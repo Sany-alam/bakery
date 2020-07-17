@@ -20,7 +20,7 @@ if (mysqli_num_rows($res)>0) {
         </div>
         </div>
         <div class="product-content">
-        <h3><a href="single-product.html"><?php echo $items['name'] ?></a></h3>
+        <h3><a href="javascript:void(0);"><?php echo $items['name'] ?></a></h3>
         <p class="pull-left"><?php echo $items['price']."Tk" ?><del><?php echo $items['price']+(5)."Tk"; ?></del></p>
         </div>
         </div>

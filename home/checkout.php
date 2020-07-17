@@ -35,32 +35,7 @@
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <!--Start Preloader-->
-    <div class="preloader-wrap">
-        <div class="spinner"></div>
-    </div>
-    <!-- search-form here -->
-    <div class="search-area flex-style">
-        <span class="closebar">Close</span>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2 col-12">
-                    <div class="search-form">
-                        <form action="http://themepresss.com/tf/html/tohoney/search">
-                            <input type="text" placeholder="Search Here...">
-                            <button><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- search-form here -->
     <!-- header-area start -->
-    <?php //include("includes/header-top.php"); ?>
     <?php include("includes/header-bottom.php"); ?>
     <!-- header-area end -->
     <!-- .breadcumb-area start -->
@@ -139,9 +114,6 @@
         </div>
     </div>
     <!-- checkout-area end -->
-    <!-- start social-newsletter-section -->
-    <?php include("includes/subscription.php"); ?>
-    <!-- end social-newsletter-section -->
     <!-- .footer-area start -->
     <?php include("includes/footer.php"); ?>
     <!-- .footer-area end -->

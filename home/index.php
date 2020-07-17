@@ -129,7 +129,7 @@ if (!isset($_SESSION['cart'])) {
                             </div>
                         </div>
                         <div class="product-content">
-                            <h3><a href="single-product.html"><?php echo $items['name']; ?></a></h3>
+                            <h3><a href="javascript:void(0);"><?php echo $items['name']; ?></a></h3>
                             <p class="pull-left"><?php echo $items['price']; ?>
                             </p>
                         </div>
@@ -141,11 +141,8 @@ if (!isset($_SESSION['cart'])) {
             </ul>
         </div>
     </div>
-    <!-- start social-newsletter-section -->
-    <!-- <?php include("includes/subscription.php"); ?> -->
-    <!-- end social-newsletter-section -->
     <!-- .footer-area start -->
-    <!-- <?php include("includes/footer.php"); ?> -->
+    <?php include("includes/footer.php"); ?>
     <!-- .footer-area end -->
     <!-- Modal area start -->
     <?php include("includes/cartmodal.php"); ?>

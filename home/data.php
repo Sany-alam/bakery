@@ -127,7 +127,7 @@ if (isset($_POST['show_cart'])) {
                     else {
                         ?>
                         <tr><td class="images"><img src="<?php echo $_SESSION['cart'][$key]['img']; ?>" alt=""></td>
-                        <td class="product"><a href="single-product.html"><?php echo $_SESSION['cart'][$key]['name']; ?></a></td>
+                        <td class="product"><a href="javascript:void(0)"><?php echo $_SESSION['cart'][$key]['name']; ?></a></td>
                     <td class="price"
                     ><?php echo $_SESSION['cart'][$key]['price']; ?></td>
                     <td class="quantity cart-plus-minus">

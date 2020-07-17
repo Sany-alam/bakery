@@ -6,11 +6,8 @@
                         <div class="col-lg-12 col-12">
                             <div class="footer-top-text text-center">
                                 <ul>
-                                    <li><a href="javascript:void(0)">home</a></li>
-                                    <li><a href="javascript:void(0)">our story</a></li>
-                                    <li><a href="javascript:void(0)">feed shop</a></li>
-                                    <li><a href="javascript:void(0)">how to eat blog</a></li>
-                                    <li><a href="javascript:void(0)">contact</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="cart.php">Cart</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -39,19 +36,11 @@
                     <div class="col-lg-5 col-md-8 col-sm-12">
                         <div class="footer-adress">
                             <ul>
-                                <li><a href="javascript:void(0)"><span>Email:</span> domain@gmail.com</a></li>
-                                <li><a href="javascript:void(0)"><span>Tel:</span> 0131235555</a></li>
-                                <li><a href="javascript:void(0)"><span>Adress:</span> 52 Web Bangale , Adress line2 , ip:3105</a></li>
+                                <li><a href="javascript:void(0)"><span>Email:</span> example@example.com</a></li>
+                                <li><a href="javascript:void(0)"><span>Tel:</span> 01858-814456, 01813-817063</a></li>
                             </ul>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-3 col-md-4 col-sm-12">
-                        <div class="footer-reserved">
-                            <ul>
-                                <li>Copyright © 2019 abc.</li>
-                            </ul>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>

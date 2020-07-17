@@ -94,7 +94,7 @@ include("../connection.php");
     </div>
     <!-- cart-area end -->
      <!-- start social-newsletter-section -->
-     <?php include("includes/subscription.php"); ?>
+     <!-- <?php include("includes/subscription.php"); ?> -->
     <!-- end social-newsletter-section -->
     <!-- .footer-area start -->
     <?php include("includes/footer.php"); ?>
