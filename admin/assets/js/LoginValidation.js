@@ -37,6 +37,7 @@ $("#signin").click(function(){
       url:"l&s.php",
       success:function(data)
       {
+        console.log(data);
         msg = $.trim(data);
         if (msg == "congo")
         {

@@ -1,5 +1,6 @@
 <?php
 include("../connection.php");
+
 // check name
 if (isset($_POST['name_check'])) {
   $name = $_POST['name'];
@@ -61,11 +62,12 @@ if (isset($_POST['login']))
 {
   $name = $_POST['userName'];
   $pass = $_POST['password'];
-  $sql = "SELECT * FROM `admin` WHERE `name` = '$name' and `password` = '$pass'";
-  $res = mysqli_query($conn,$sql);
-  if (mysqli_num_rows($res)==1) {
-    $user = mysqli_fetch_array($res);
-    $_SESSION['admin'] = $user;
+  // $sql = "SELECT * FROM `admin` WHERE `name` = '$name' and `password` = '$pass'";
+  // $res = mysqli_query($conn,$sql);
+  // if (mysqli_num_rows($res)==1) {
+  if ($name==='admin' && $pass === 'password') {
+    // $user = mysqli_fetch_array($res);
+    $_SESSION['admin'] = 'admin';
     echo "congo";
   }
   else {

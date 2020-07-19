@@ -5,6 +5,24 @@ $(function(){
     order_list();
 });
 
+function products(order_id) {
+    var formdata = new FormData();
+    formdata.append("order_no",order_id);
+    formdata.append("product_det","product_det");
+    $.ajax({
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"../admin/data.php",
+        success:function(data)
+        {
+            $("#p-li").html(data);
+            $("#products-detail-modal").modal('show');
+        },
+        cache:false
+    });
+}
 
 function place_order() {
     var name = $("#name").val();

@@ -45,10 +45,6 @@
                 <div class="col-12">
                     <div class="breadcumb-wrap text-center">
                         <h2>Checkout</h2>
-                        <ul>
-                            <li><a href="index-2.html">Home</a></li>
-                            <li><span>Checkout</span></li>
-                        </ul>
                     </div>
                 </div>
             </div>

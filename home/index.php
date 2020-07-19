@@ -1,6 +1,5 @@
 <?php
 include("../connection.php");
-$ip = ip();
 function ip()
 {
   if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -15,6 +14,7 @@ function ip()
   return $ip;
 //   echo $ip;
 }
+$ip = ip();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array($ip);
 }
@@ -27,9 +27,6 @@ if (!isset($_SESSION['cart'])) {
     <title>Tohoney - Shop</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png"> -->
-    <!-- Place favicon.ico in the root directory -->
-    <!-- all css here -->
     <!-- bootstrap v3.3.7 css -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <!-- owl.carousel.2.0.0-beta.2.4 css -->

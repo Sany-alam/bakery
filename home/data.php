@@ -1,6 +1,45 @@
 <?php
 include("../connection.php");
 
+if (isset($_POST['register'])) {
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $phone=$_POST['phone'];
+    $password=$_POST['password'];
+    $confirm_password=$_POST['confirm_password'];
+    $sql="INSERT INTO `customer`(`name`, `email`, `password`, `phone`) VALUES ('$name','$email','$password','$phone')";
+    $res=mysqli_query($conn,$sql);
+    if ($res) {
+        echo "ok";
+    }else {
+        echo "Server error";
+    }
+}
+
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $sql = "SELECT * FROM `customer` WHERE `email` = '$email' AND `password` = '$password'";
+    $res = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($res)==1) {
+        echo "ok";
+        $_SESSION['user']=mysqli_fetch_assoc($res);
+    }else {
+        echo "not ok";
+    }
+}
+
+if (isset($_POST['email_check'])) {
+    $email = $_POST['email'];
+    $sql = "SELECT * FROM `customer` WHERE `email` = '$email'";
+    $res = mysqli_query($conn,$sql);
+    if (mysqli_num_rows($res)>0) {
+        echo "found email";
+    }else {
+        echo "Found no email";
+    }
+}
+
 if (isset($_POST['order'])) {
     date_default_timezone_set('Asia/Dhaka');
     $date = date('Y-m-d');
@@ -25,8 +64,13 @@ if (isset($_POST['order'])) {
     for ($i=1; $i < count($_SESSION['cart']); $i++) { 
         $product_id = $_SESSION['cart'][$i]['id'];
         $product_quantity = $_SESSION['cart'][$i]['quantity'];
+        if (isset($_SESSION['user'])) {
+            $customer = $_SESSION['user']['id'];
+        }else {
+            $customer = 0;
+        }
 
-        $sql = "INSERT INTO `orders`(`name`, `email`, `phone`, `address`, `product_id`,`product_quantity`,`order_no`,`status`,`order_date`) VALUES ('$name','$email','$phone','$address','$product_id','$product_quantity','$order_no','$status','$date')";
+        $sql = "INSERT INTO `orders`(`name`, `email`, `phone`, `address`, `product_id`,`product_quantity`,`order_no`,`status`,`order_date`,`customer`) VALUES ('$name','$email','$phone','$address','$product_id','$product_quantity','$order_no','$status','$date','$customer')";
         $res = mysqli_query($conn,$sql);
     }
     if (isset($_SESSION['cart'])) {

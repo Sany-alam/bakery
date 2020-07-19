@@ -44,7 +44,8 @@ if (isset($_SESSION['courier'])) {
                         <th>Customer Address</th>
                         <th>Customer Phone</th>
                         <th>Products</th>
-                        <th>Actions</th>
+                        <th>#</th>
+                        <th>#</th>
                     </tr>
                 </thead>
                 <tbody id="orde-table">
@@ -109,7 +110,6 @@ if (isset($_SESSION['courier'])) {
                 success:function(data)
                 {
                     show_order()
-                    console.log(data);
                 },
                 cache:false
             });
@@ -128,6 +128,23 @@ if (isset($_SESSION['courier'])) {
                 {
                     $("#p-li").html(data);
                     $("#products-detail-modal").modal('show');
+                },
+                cache:false
+            });
+        }
+        function reject_order(id) {
+            var formdata = new FormData();
+            formdata.append("order_no",id);
+            formdata.append("reject_order","reject_order");
+            $.ajax({
+                processData:false,
+                contentType:false,
+                data:formdata,
+                type:"post",
+                url:"data.php",
+                success:function(data)
+                {
+                    show_order();
                 },
                 cache:false
             });

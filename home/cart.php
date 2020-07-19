@@ -35,36 +35,23 @@ include("../connection.php");
 </head>
 
 <body>
-    <!--Start Preloader-->
-    <div class="preloader-wrap">
-        <div class="spinner"></div>
-    </div>
-    <!-- search-form here -->
-    <div class="search-area flex-style">
-        <span class="closebar">Close</span>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2 col-12">
-                    <div class="search-form">
-                        <form action="javascript:void(0)">
-                            <input type="text" placeholder="Search Here...">
-                            <button><i class="fa fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- search-form here -->
     <!-- header-area start -->
     <header class="header-area">
         <?php //include("includes/header-top.php"); ?>
         <?php include("includes/header-bottom.php"); ?>
     </header>
     <!-- header-area end -->
-    <!-- slider or .breadcumb-area start -->
-    <?php //include("includes/slider.php"); ?>
-    <!-- slider or .breadcumb-area end -->
+    <div class="breadcumb-area bg-img-4 ptb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcumb-wrap text-center">
+                        <h2>CART</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- cart-area start -->
     <div class="cart-area ptb-100">
         <div class="container">
@@ -93,9 +80,6 @@ include("../connection.php");
         </div>
     </div>
     <!-- cart-area end -->
-     <!-- start social-newsletter-section -->
-     <!-- <?php include("includes/subscription.php"); ?> -->
-    <!-- end social-newsletter-section -->
     <!-- .footer-area start -->
     <?php include("includes/footer.php"); ?>
     <!-- .footer-area end -->

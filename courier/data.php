@@ -1,6 +1,15 @@
 <?php
 include("../connection.php");
 
+if (isset($_POST['reject_order'])) {
+    $id = $_POST['order_no'];
+    $user = $_SESSION['courier']['id'];
+    $sql= "UPDATE `orders` SET `status`='request' WHERE `order_no` = '$id' AND `status` = 'processing'";
+    $res = mysqli_query($conn,$sql);
+    $sql= "UPDATE `courier` SET `status`= 0 WHERE `id` = '$user'";
+    $res = mysqli_query($conn,$sql);
+}
+
 if (isset($_POST['my_complete_order'])) {
     $user = $_SESSION['courier'];
     $id = $user['id'];
@@ -118,7 +127,10 @@ if (isset($_POST['order_requests'])) {
                 <button class="btn btn-primary btn-sm" onclick="product_detail(<?php echo $fetch['order_no']; ?>)">Products</button>
             </td>
             <td>
-            <button class="btn btn-success btn-sm" onclick="complete_order(<?php echo $fetch['order_no']; ?>)">Complete</button>
+                <button class="btn btn-danger btn-sm" onclick="reject_order(<?php echo $fetch['order_no']; ?>)">Reject</button>
+            </td>
+            <td>
+                <button class="btn btn-success btn-sm" onclick="complete_order(<?php echo $fetch['order_no']; ?>)">Complete</button>
             </td>
         </tr>
         <?php

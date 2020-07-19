@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2020 at 10:15 AM
+-- Generation Time: Jul 20, 2020 at 12:16 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -28,25 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `admin` (
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
   `id` int(11) NOT NULL,
   `name` text NOT NULL,
   `email` text NOT NULL,
-  `password` text NOT NULL,
-  `phone` text NOT NULL,
-  `address` text NOT NULL,
-  `city` text NOT NULL,
-  `language` text NOT NULL
+  `password` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`first_name`, `last_name`, `id`, `name`, `email`, `password`, `phone`, `address`, `city`, `language`) VALUES
-('Mazharul', 'Alam', 2, 'Sany', 'mazharulalam26@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'Bangla'),
-('Sany', 'Alam', 3, 'sany1', 'playerc950@gmail.com', 'admin', '01876626011', 'Rahmannagar ', 'rahmannagar', 'English');
 
 -- --------------------------------------------------------
 
@@ -88,10 +74,31 @@ CREATE TABLE `courier` (
 --
 
 INSERT INTO `courier` (`id`, `name`, `phone`, `status`, `password`) VALUES
-(1, 'robert', '+8801854454', 0, 'asdf'),
+(5, 'asd', '01876626011', 0, 'asd'),
 (2, 'shajib', '01812222222', 0, '123'),
 (3, 'zozo', '656666256', 0, 'asd'),
 (4, 'Sany', '01876626011', 0, 'asd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `phone` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `email`, `password`, `phone`) VALUES
+(4, 'Sany', 'mazharulalam26@gmail.com', 'asd', '01876626011');
 
 -- --------------------------------------------------------
 
@@ -137,23 +144,36 @@ CREATE TABLE `orders` (
   `status` text NOT NULL,
   `order_date` text NOT NULL,
   `complete_order_date` text NOT NULL,
-  `courier` int(11) NOT NULL
+  `courier` int(11) NOT NULL,
+  `customer` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `product_quantity`, `order_no`, `status`, `order_date`, `complete_order_date`, `courier`) VALUES
-(28, 'Computer', 'mazharalam753@gmail.com', '01876626011', 'Rahmannagar', '23', 2, 3, 'complete', '16-07-2020', '2020-07-16', 4),
-(27, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 2, 2, 'complete', '16-07-2020', '2020-07-16', 4),
-(24, 'Men', 'mazharalam753@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '23', 2, 1, 'complete', '16-07-2020', '2020-07-16', 1),
-(26, 'Men', 'mazharalam753@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '21', 1, 1, 'complete', '16-07-2020', '2020-07-16', 1),
-(25, 'Men', 'mazharalam753@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '22', 3, 1, 'complete', '16-07-2020', '2020-07-16', 1);
+INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `product_quantity`, `order_no`, `status`, `order_date`, `complete_order_date`, `courier`, `customer`) VALUES
+(36, 'Computer', 'sssss@gmail.com', '01876626011', 'Rahmannagar', '21', 2, 4, 'complete', '16-07-2020', '16-07-2020', 3, 0),
+(35, 'rafi', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 1, 3, 'complete', '16-07-2020', '16-07-2020', 2, 0),
+(34, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '18', 2, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
+(33, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '22', 3, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
+(30, 'rafi', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '21', 1, 1, 'complete', '16-07-2020', '16-07-2020', 4, 0),
+(31, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '24', 1, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
+(32, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 1, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
+(29, 'rafi', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '22', 1, 1, 'complete', '16-07-2020', '16-07-2020', 4, 0),
+(37, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 2, 5, 'request', '20-07-2020', '', 4, 4),
+(38, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '18', 1, 5, 'request', '20-07-2020', '', 4, 4),
+(39, 'Sany', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '18', 2, 6, 'complete', '20-07-2020', '20-07-2020', 2, 4);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -165,6 +185,12 @@ ALTER TABLE `category`
 -- Indexes for table `courier`
 --
 ALTER TABLE `courier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -184,6 +210,12 @@ ALTER TABLE `orders`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
@@ -193,6 +225,12 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `courier`
 --
 ALTER TABLE `courier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
@@ -205,7 +243,7 @@ ALTER TABLE `item-detail`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
