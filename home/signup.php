@@ -3,7 +3,6 @@ include("../connection.php");
 if (isset($_SESSION['user'])) {
     header('location:index.php');
 }else{
-$ip = ip();
 function ip()
 {
   if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -18,6 +17,7 @@ function ip()
   return $ip;
 //   echo $ip;
 }
+$ip = ip();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array($ip);
 }
