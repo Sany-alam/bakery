@@ -10,7 +10,7 @@ if (isset($_SESSION['admin'])) {
     $sql_request_order = "SELECT * FROM `orders` WHERE `status` = 'request' GROUP BY order_no";
     $res_request_order = mysqli_query($conn,$sql_request_order);
 
-    $sql_customer = "SELECT * FROM `orders` GROUP BY `name`";
+    $sql_customer = "SELECT * FROM `customer`";
     $res_customer = mysqli_query($conn,$sql_customer);
 ?>
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ if (isset($_SESSION['admin'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>To-honey - Admin</title>
+    <title>Easyfood - Admin</title>
     <!-- Core css -->
     <link href="assets/vendors/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/app.min.css" rel="stylesheet">

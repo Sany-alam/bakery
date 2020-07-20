@@ -15,9 +15,7 @@ if(isset($_POST['sell_by_day'])){
                     <tr>
                     <tr>
                         <th>Order no</th>
-                        <th>Customer Name</th>
-                        <th>Customer Phone</th>
-                        <th>Customer Address</th>
+                        <th>Customer Detail</th>
                         <th>Courier Detail</th>
                         <th>Products</th>
                     </tr>
@@ -34,12 +32,15 @@ if(isset($_POST['sell_by_day'])){
                         </td>
                         <td>
                             <div class=" align-items-center">
-                                <h6 class="m-b-0"><?php echo $fetch['name'] ?></h6>
-                            </div>
-                        </td>
-                        <td>
-                            <div class=" align-items-center">
-                                <h6 class="m-b-0"><?php echo $fetch['phone'] ?></h6>
+                            <?php 
+                            $customer = $fetch['customer'];
+                            $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$courier'";
+                            $res_customer = mysqli_query($conn,$sql_customer);
+                            $item_customer = mysqli_fetch_assoc($res_customer);
+                            ?>
+                                <h6 class="m-b-0">
+                                    <?php echo $item_customer['name']; ?>
+                                </h6>
                             </div>
                         </td>
                         <td>
@@ -204,7 +205,13 @@ if (isset($_POST['complete_orders'])) {
             </td>
             <td>
                 <div class=" align-items-center">
-                    <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
+                    <?php 
+                    $customer = $item['customer'];
+                    $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
+                    $res_customer = mysqli_query($conn,$sql_customer);
+                    $item_customer = mysqli_fetch_assoc($res_customer);
+                    ?>
+                    <h6 class="m-b-0"><?php echo $item_customer['name'] ?></h6>
                 </div>
             </td>
             <td>
@@ -291,7 +298,13 @@ if (isset($_POST['show_pending_orders'])) {
                 </td>
                 <td>
                     <div class=" align-items-center">
-                        <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
+                    <?php 
+                    $customer = $item['customer'];
+                    $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
+                    $res_customer = mysqli_query($conn,$sql_customer);
+                    $item_customer = mysqli_fetch_assoc($res_customer);
+                    ?>
+                        <h6 class="m-b-0"><?php echo $item_customer['name'] ?></h6>
                     </div>
                 </td>
                 <td>
@@ -473,7 +486,13 @@ if (isset($_POST['show_order_req'])) {
                 </td>
                 <td>
                     <div class=" align-items-center">
-                        <h6 class="m-b-0"><?php echo $item['name'] ?></h6>
+                    <?php 
+                    $customer = $item['customer'];
+                    $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
+                    $res_customer = mysqli_query($conn,$sql_customer);
+                    $item_customer = mysqli_fetch_assoc($res_customer);
+                    ?>
+                        <h6 class="m-b-0"><?php echo $item_customer['name'] ?></h6>
                     </div>
                 </td>
                 <td><?php echo $item['order_date'] ?></td>

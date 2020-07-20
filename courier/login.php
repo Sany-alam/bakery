@@ -8,7 +8,7 @@ if(!isset($_SESSION['courier'])){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../assets/css/app.min.css">
-        <title>Courier - login</title>
+        <title>Easyfood Courier</title>
     </head>
     <body>
         <div style="height:100vh;" class="d-flex justify-content-center align-items-center">

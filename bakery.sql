@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2020 at 12:16 AM
+-- Generation Time: Jul 20, 2020 at 05:31 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.3.19
 
@@ -98,7 +98,10 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id`, `name`, `email`, `password`, `phone`) VALUES
-(4, 'Sany', 'mazharulalam26@gmail.com', 'asd', '01876626011');
+(5, 'Men', 'mazharalam753@gmail.com', 'asd', '01876626011'),
+(4, 'Sany', 'mazharulalam26@gmail.com', 'asd', '01876626011'),
+(6, 'rafi', 'salah1234@gmail.com', 'asd', '01876626011'),
+(7, 'htaccess', 'JoinalAbedinIshan@gmail.com', 'asd', '01876626011');
 
 -- --------------------------------------------------------
 
@@ -134,9 +137,6 @@ INSERT INTO `item-detail` (`id`, `name`, `category`, `price`, `description`, `im
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  `email` text NOT NULL,
-  `phone` text NOT NULL,
   `address` text NOT NULL,
   `product_id` text NOT NULL,
   `product_quantity` int(11) NOT NULL,
@@ -152,18 +152,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `name`, `email`, `phone`, `address`, `product_id`, `product_quantity`, `order_no`, `status`, `order_date`, `complete_order_date`, `courier`, `customer`) VALUES
-(36, 'Computer', 'sssss@gmail.com', '01876626011', 'Rahmannagar', '21', 2, 4, 'complete', '16-07-2020', '16-07-2020', 3, 0),
-(35, 'rafi', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 1, 3, 'complete', '16-07-2020', '16-07-2020', 2, 0),
-(34, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '18', 2, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
-(33, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '22', 3, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
-(30, 'rafi', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '21', 1, 1, 'complete', '16-07-2020', '16-07-2020', 4, 0),
-(31, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '24', 1, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
-(32, 'rafi', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 1, 2, 'complete', '16-07-2020', '16-07-2020', 4, 0),
-(29, 'rafi', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '22', 1, 1, 'complete', '16-07-2020', '16-07-2020', 4, 0),
-(37, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '23', 2, 5, 'request', '20-07-2020', '', 4, 4),
-(38, 'Sany', 'mazharulalam26@gmail.com', '01876626011', '4209, Rahmannagar, CT, Bangladesh.', '18', 1, 5, 'request', '20-07-2020', '', 4, 4),
-(39, 'Sany', 'salah1234@gmail.com', '01876626011', '4209, Rahmannagar, CTG, Bangladesh.', '18', 2, 6, 'complete', '20-07-2020', '20-07-2020', 2, 4);
+INSERT INTO `orders` (`id`, `address`, `product_id`, `product_quantity`, `order_no`, `status`, `order_date`, `complete_order_date`, `courier`, `customer`) VALUES
+(50, 'asfgfdfhgjkk\nukfhyukhk\nkhjk\njkjhkhf\nkhjfk\nfhkhjk\nhjkhj\nkj', '21', 2, 2, 'complete', '20-07-2020', '20-07-2020', 2, 6),
+(49, 'asfgfdfhgjkk\nukfhyukhk\nkhjk\njkjhkhf\nkhjfk\nfhkhjk\nhjkhj\nkj', '23', 2, 2, 'complete', '20-07-2020', '20-07-2020', 2, 6),
+(48, 'Rahmannagar', '22', 3, 1, 'complete', '20-07-2020', '20-07-2020', 2, 6),
+(47, 'Rahmannagar', '24', 3, 1, 'complete', '20-07-2020', '20-07-2020', 2, 6);
 
 --
 -- Indexes for dumped tables
@@ -231,7 +224,7 @@ ALTER TABLE `courier`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `item-detail`
@@ -243,7 +236,7 @@ ALTER TABLE `item-detail`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

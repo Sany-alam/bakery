@@ -11,6 +11,7 @@ if (isset($_POST['register'])) {
     $res=mysqli_query($conn,$sql);
     if ($res) {
         echo "ok";
+        $_SESSION['register']='Successfully registered!';
     }else {
         echo "Server error";
     }
@@ -43,9 +44,6 @@ if (isset($_POST['email_check'])) {
 if (isset($_POST['order'])) {
     date_default_timezone_set('Asia/Dhaka');
     $date = date('Y-m-d');
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
     $address = $_POST['address'];
     
         $order_sql = "SELECT MAX(order_no) AS `order_no` FROM `orders`";
@@ -70,7 +68,7 @@ if (isset($_POST['order'])) {
             $customer = 0;
         }
 
-        $sql = "INSERT INTO `orders`(`name`, `email`, `phone`, `address`, `product_id`,`product_quantity`,`order_no`,`status`,`order_date`,`customer`) VALUES ('$name','$email','$phone','$address','$product_id','$product_quantity','$order_no','$status','$date','$customer')";
+        $sql = "INSERT INTO `orders`(`address`, `product_id`,`product_quantity`,`order_no`,`status`,`order_date`,`customer`) VALUES ('$address','$product_id','$product_quantity','$order_no','$status','$date','$customer')";
         $res = mysqli_query($conn,$sql);
     }
     if (isset($_SESSION['cart'])) {
@@ -111,10 +109,19 @@ if (isset($_POST['total_price'])) {
         <li><span class="pull-left">Subtotal </span><?php echo $total." Tk"; ?></li>
         <li><span class="pull-left"> Total </span><?php echo $total." Tk"; ?></li>
         </ul>
-        <a href="checkout.php">Proceed to Checkout</a>
-        </div>
         <?php
+        if (isset($_SESSION['user'])) {
+            ?>
+            <a href="checkout.php">Proceed to Checkout</a>
+            </div>
+            <?php
+        }else{
+            ?>
+            <a href="login.php">Login to checkout!</a>
+            </div>
+            <?php
         }
+    }
 }
 
 

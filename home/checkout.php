@@ -1,12 +1,31 @@
-<!doctype html>
+<?php
+include("../connection.php");
+if (isset($_SESSION['user'])) {
+    function ip()
+    {
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    }
+    elseif (!empty($_SERVER['HTTP_X_FORWARDER_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDER_FOR'];
+    }
+    else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+    //   echo $ip;
+    }
+    $ip = ip();
+    if (!isset($_SESSION['cart'])) {
+        $_SESSION['cart'] = array($ip);
+    }
+    ?>
+    <!doctype html>
 <html class="no-js" lang="en">
-
-
-<!-- Mirrored from themepresss.com/tf/html/tohoney/checkout.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 21 Dec 2019 08:46:43 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tohoney - Checkout</title>
+    <title>Easyfood</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/png" href="assets/images/favicon.png">
@@ -50,59 +69,18 @@
             </div>
         </div>
     </div>
-    <!-- .breadcumb-area end -->
-    <!-- checkout-area start -->
     <div class="checkout-area ptb-100">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="checkout-form form-style">
-                        <h3>Billing Details</h3>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p>Name *</p>
-                                    <input id="name" type="text">
-                                </div>
-                                <div class="col-12">
-                                    <p>Email Address *</p>
-                                    <input id="email" type="email">
-                                </div>
-                                <div class="col-12">
-                                    <p>Phone No. *</p>
-                                    <input id="phone" type="text">
-                                </div>
-                                <div class="col-12">
-                                    <p>Your Address *</p>
-                                    <input id="address" type="text">
-                                </div>
-                            </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-6">
                     <div class="order-area">
                         <h3>Your Order</h3>
                         <ul class="total-cost" id="order-list">
                             
                         </ul>
-                        <!-- <ul class="payment-method">
-                            <li>
-                                <input id="bank" type="checkbox">
-                                <label for="bank">Direct Bank Transfer</label>
-                            </li>
-                            <li>
-                                <input id="paypal" type="checkbox">
-                                <label for="paypal">Paypal</label>
-                            </li>
-                            <li>
-                                <input id="card" type="checkbox">
-                                <label for="card">Credit Card</label>
-                            </li>
-                            <li>
-                                <input id="delivery" type="checkbox">
-                                <label for="delivery">Cash on Delivery</label>
-                            </li>
-                        </ul> -->
-                        <h5 class="text-primary">Cash on delivery</h5>
+                        <!-- <h5 class="text-primary text-center">Cash on delivery</h5> -->
+                        <textarea id="address" class="form-control mb-2" placeholder="Your address"></textarea>
+                        <div class="alert">Ensure your address</div>
                         <button onclick="place_order()">Place Order</button>
                     </div>
                 </div>
@@ -115,5 +93,13 @@
     <!-- .footer-area end -->
     <!-- all js -->
     <?php include("includes/scripts.php"); ?>
+    <script>
+    document.querySelector(".alert").style.display='none';
+    </script>
 </body>
 </html>
+<?php
+}else{
+    header("location:login.php");
+}
+?>

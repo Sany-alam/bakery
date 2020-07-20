@@ -1,4 +1,9 @@
 <div class="header">
+    <div class="logo logo-dark">
+        <a href="index.php">
+            <h1 class="py-3" style="font-weight:bold;font-size: 30px;margin: 0px;"><div class="d-inline-block" style="color:#ef4836;">E</div><div class="d-inline-block" style="color:#000;">F</div></h1>
+        </a>
+    </div>
     <div class="nav-wrap">
         <ul class="nav-left">
             <li class="desktop-toggle">

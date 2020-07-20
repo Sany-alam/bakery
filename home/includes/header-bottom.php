@@ -4,8 +4,8 @@
             <div class="col-lg-3 col-md-7 col-sm-6 col-6">
                 <div class="logo">
                     <a href="index.php">
-                <img src="assets/images/logo.png" alt="">
-                </a>
+                        <h1 style="font-weight:bold;font-size: 30px;margin: 0px;"><div class="d-inline-block" style="color:#ef4836;">Easy</div><div class="d-inline-block" style="color:#000;">food</div></h1>
+                    </a>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-lg-block">
@@ -16,7 +16,7 @@
                         if (isset($_SESSION['user'])) {
                             ?>
                             <li><a href="myorders.php">My Orders</a></li>
-                            <li><a href="logout.php">Logout</a></li>
+                            <li><a href="logout.php" onclick="cart_flash()">Logout</a></li>
                             <?php
                         }else {
                             ?>

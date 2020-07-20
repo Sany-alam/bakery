@@ -17,13 +17,17 @@ if (isset($_POST['my_complete_order'])) {
     $res = mysqli_query($conn,$sql);
     if (mysqli_num_rows($res)>0) {
         while ($fetch = mysqli_fetch_array($res)) {
+            $customer = $fetch['customer'];
+            $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
+            $res_customer = mysqli_query($conn,$sql_customer);
+            $item_customer = mysqli_fetch_assoc($res_customer);
         ?>
         <tr>
             <td><?php echo $fetch['id']; ?></td>
             <td><?php echo $fetch['order_date']; ?></td>
-            <td><?php echo $fetch['name']; ?></td>
+            <td><?php echo $item_customer['name']; ?></td>
             <td><?php echo $fetch['address']; ?></td>
-            <td><?php echo $fetch['phone']; ?></td>
+            <td><?php echo $item_customer['phone']; ?></td>
             <td>
                 <button class="btn btn-primary btn-sm" onclick="product_detail(<?php echo $fetch['order_no']; ?>)">Products</button>
             </td>
@@ -116,13 +120,17 @@ if (isset($_POST['order_requests'])) {
     $res = mysqli_query($conn,$sql);
     if (mysqli_num_rows($res)>0) {
         while ($fetch = mysqli_fetch_array($res)) {
+            $customer = $fetch['customer'];
+            $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
+            $res_customer = mysqli_query($conn,$sql_customer);
+            $item_customer = mysqli_fetch_assoc($res_customer);
         ?>
         <tr>
             <td><?php echo $fetch['id']; ?></td>
             <td><?php echo $fetch['order_date']; ?></td>
-            <td><?php echo $fetch['name']; ?></td>
+            <td><?php echo $item_customer['name']; ?></td>
             <td><?php echo $fetch['address']; ?></td>
-            <td><?php echo $fetch['phone']; ?></td>
+            <td><?php echo $item_customer['phone']; ?></td>
             <td>
                 <button class="btn btn-primary btn-sm" onclick="product_detail(<?php echo $fetch['order_no']; ?>)">Products</button>
             </td>

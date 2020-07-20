@@ -27,7 +27,7 @@ if (!isset($_SESSION['cart'])) {
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Tohoney - Shop</title>
+    <title>Easyfood</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -59,7 +59,15 @@ if (!isset($_SESSION['cart'])) {
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
-<div class="account-area ptb-100">
+<div class="m-0 row justify-content-center align-items-center">
+    <div class="logo">
+        <a href="index.php">
+            <h1 style="font-weight:bold;font-size: 30px;margin: 0px;"><div class="d-inline-block" style="color:#ef4836;">Easy</div><div class="d-inline-block" style="color:#000;">Food</div></h1>
+        </a>
+    </div>
+</div>
+<hr class="m-0">
+<div class="account-area ptb-50">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
@@ -142,9 +150,15 @@ if (!isset($_SESSION['cart'])) {
 
             function name()
             {
+                var pattern = new RegExp(/^[A-Za-z]+$/);
                 if($("input[name='name']").val().length == 0)
                 {
                     $("#name_alert").html("Name is required!");
+                    $("#name_alert").show();
+                    return true;
+                }
+                else if(!pattern.test($("input[name='name']").val())){
+                    $("#name_alert").html("Only alphabetic characters aloowed!");
                     $("#name_alert").show();
                     return true;
                 }
