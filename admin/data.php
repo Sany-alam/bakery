@@ -34,7 +34,7 @@ if(isset($_POST['sell_by_day'])){
                             <div class=" align-items-center">
                             <?php 
                             $customer = $fetch['customer'];
-                            $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$courier'";
+                            $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
                             $res_customer = mysqli_query($conn,$sql_customer);
                             $item_customer = mysqli_fetch_assoc($res_customer);
                             ?>
