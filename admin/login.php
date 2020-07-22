@@ -21,8 +21,7 @@ else {
         <div class="container-fluid">
             <div class="d-flex full-height p-v-15 flex-column justify-content-between">
                 <div class="d-none d-md-flex p-h-40">
-                    <img src="../home/assets/images/logo.png" alt="">
-                    <!-- <img src="assets/images/logo/logo.png" alt=""> -->
+                 <?php include("includes/logo.php"); ?>
                 </div>
                 <div class="container">
                     <div class="row align-items-center">
