@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2020 at 05:31 PM
+-- Generation Time: Jul 26, 2020 at 08:34 PM
 -- Server version: 10.4.13-MariaDB
--- PHP Version: 7.3.19
+-- PHP Version: 7.4.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -90,18 +90,20 @@ CREATE TABLE `customer` (
   `name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
-  `phone` text NOT NULL
+  `phone` text NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `email_status` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id`, `name`, `email`, `password`, `phone`) VALUES
-(5, 'Men', 'mazharalam753@gmail.com', 'asd', '01876626011'),
-(4, 'Sany', 'mazharulalam26@gmail.com', 'asd', '01876626011'),
-(6, 'rafi', 'salah1234@gmail.com', 'asd', '01876626011'),
-(7, 'htaccess', 'JoinalAbedinIshan@gmail.com', 'asd', '01876626011');
+INSERT INTO `customer` (`id`, `name`, `email`, `password`, `phone`, `token`, `email_status`) VALUES
+(5, 'Men', 'mazharalam753@gmail.com', 'asd', '01876626011', '', ''),
+(6, 'rafi', 'salah1234@gmail.com', 'asd', '01876626011', '', ''),
+(7, 'htaccess', 'JoinalAbedinIshan@gmail.com', 'asd', '01876626011', '', ''),
+(15, 'Sany', 'mazharulalam26@gmail.com', 'asd', '01876626011', '4a93355b8dcfdaca5203a7ccc9ca96', 'active');
 
 -- --------------------------------------------------------
 
@@ -224,7 +226,7 @@ ALTER TABLE `courier`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `item-detail`

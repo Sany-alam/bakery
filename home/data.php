@@ -7,11 +7,19 @@ if (isset($_POST['register'])) {
     $phone=$_POST['phone'];
     $password=$_POST['password'];
     $confirm_password=$_POST['confirm_password'];
-    $sql="INSERT INTO `customer`(`name`, `email`, `password`, `phone`) VALUES ('$name','$email','$password','$phone')";
+    $token = bin2hex(random_bytes(15));
+    $sql="INSERT INTO `customer`(`name`, `email`, `password`, `phone`,`token`,`email_status`) VALUES ('$name','$email','$password','$phone','$token','inactive')";
     $res=mysqli_query($conn,$sql);
     if ($res) {
-        echo "ok";
-        $_SESSION['register']='Successfully registered!';
+        $subject = "Verify Email";
+        $body = "Hi $name, Click here http://localhost/bakery/home/verify.php?token=$token to verify your email...";
+        $from = "From: playerc950@gmail.com ";
+        if (mail($email,$subject,$body,$from)) {
+            echo "ok";
+            $_SESSION['register']='Successfully registered! Check your email to verify email.';
+        }else{
+            echo "Error";
+        }
     }else {
         echo "Server error";
     }
@@ -22,9 +30,14 @@ if (isset($_POST['login'])) {
     $password = $_POST['password'];
     $sql = "SELECT * FROM `customer` WHERE `email` = '$email' AND `password` = '$password'";
     $res = mysqli_query($conn,$sql);
+    $fetch = mysqli_fetch_array($res);
     if (mysqli_num_rows($res)==1) {
-        echo "ok";
-        $_SESSION['user']=mysqli_fetch_assoc($res);
+        if ($fetch['email_status']!='active') {
+            echo "email";
+        }else{
+            echo "ok";
+            $_SESSION['user']=$fetch;
+        }
     }else {
         echo "not ok";
     }

@@ -3,6 +3,10 @@ $(function(){
     show_cart();
     total_price();
     order_list();
+
+    $("#bkash").click(function(){
+        $("#exampleModalCenter").modal("show");
+    });
 });
 
 function products(order_id) {

@@ -75,7 +75,14 @@ if (isset($_SESSION['user'])) {
                         <ul class="total-cost" id="order-list">
                             
                         </ul>
-                        <!-- <h5 class="text-primary text-center">Cash on delivery</h5> -->
+
+                        <h5><b>Payment</b></h5>
+                        <input id="onDeliver" type="radio" name="deliverymethod" checked class="mr-2">
+                        <label for="onDeliver">Cash on delivery</label>
+                        <input id="bkash" type="radio" name="deliverymethod">
+                        <label for="bkash">Bkash</label>
+
+                        <hr>
                         <textarea id="address" class="form-control mb-2" placeholder="Your address"></textarea>
                         <div class="alert">Ensure your address</div>
                         <button onclick="place_order()">Place Order</button>
@@ -84,6 +91,25 @@ if (isset($_SESSION['user'])) {
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:500px;">
+            <div class="modal-content" >
+                <button style="position: absolute;right: -48px;top: -48px;width: 50px;height: 50px;background: #ef4836;text-align: center;font-size: 24px;border: none;color: #fff;opacity: 1;" type="button" class="close" data-dismiss="modal" aria-label="Close" style="width: 40px;height: 40px;">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ab quas eos nemo doloremque consectetur odio, voluptatibus quod accusamus non ducimus. Similique consequatur nisi vel doloribus commodi, hic dolor deserunt?</p>
+                    <hr>
+                    <label for="confirmation">Confirmation code</label>
+                    <input type="text" class="form-control">
+
+                    <button style="margin-top:10px;height: 45px;width: 100%;background: #ef4836;text-transform: uppercase;color: #fff;border: none;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- checkout-area end -->
     <!-- .footer-area start -->
     <?php include("includes/footer.php"); ?>
@@ -92,6 +118,7 @@ if (isset($_SESSION['user'])) {
     <?php include("includes/scripts.php"); ?>
     <script>
     document.querySelector(".alert").style.display='none';
+
     </script>
 </body>
 </html>

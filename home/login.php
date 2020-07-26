@@ -131,7 +131,12 @@ if (!isset($_SESSION['cart'])) {
                         if (a == 'ok') {
                             document.querySelector("#login-alert").style.display="none";
                             location.reload();
-                        }else{
+                        }
+                        else if(a == 'email'){
+                            document.querySelector("#login-alert").innerHTML="Credentials not verified";
+                            document.querySelector("#login-alert").style.display="block";
+                        }
+                        else{
                             document.querySelector("#login-alert").innerHTML="Invalid credentials";
                             document.querySelector("#login-alert").style.display="block";
                         }

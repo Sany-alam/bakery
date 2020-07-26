@@ -3320,7 +3320,7 @@ ol {
     background: #ef4836;
 }
 
-.modal-content button {
+/* .modal-content button {
     position: absolute;
     right: -48px;
     top: -48px;
@@ -3332,7 +3332,7 @@ ol {
     border: none;
     color: #fff;
     opacity: 1;
-}
+} */
 
 .modal-content button:hover {
     background: #333;

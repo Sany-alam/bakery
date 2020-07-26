@@ -311,6 +311,9 @@ if (!isset($_SESSION['cart'])) {
                     if (a == 'ok') {
                         document.querySelector(".alert").style.display="none";
                         location.href="login.php";
+                    }else if(a == "Error"){
+                        document.querySelector(".alert.alert-danger").innerHTML="Email verification error, give valid email to varify or contact us";
+                        document.querySelector(".alert").style.display="block";
                     }else{
                         document.querySelector(".alert.alert-danger").innerHTML=a;
                         document.querySelector(".alert").style.display="block";

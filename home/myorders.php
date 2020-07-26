@@ -182,7 +182,7 @@ $customer = $_SESSION['user']['id'];
                                                     <?php
                                                 }
                                             }else {
-                                                ?><tr><td colspan="3">No data available</td></tr><?php
+                                                ?><tr><td colspan="4">No data available</td></tr><?php
                                             }
                                             ?>
                                         </tbody>
