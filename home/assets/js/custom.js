@@ -30,11 +30,30 @@ function products(order_id) {
 
 function place_order() {
     var address = $("#address").val();
-    if (address.length ==0) {
-        $(".alert").removeClass("alert-success").html("");
-        $(".alert").addClass("alert-danger").html("Ensure your address").show();
+    var deliverymethod = $("input[name='deliverymethod']").val();
+    if (address.length ==0 || deliverymethod.length==0) {
+        $("#finalAlert").removeClass("alert-success").html("");
+        $("#finalAlert").addClass("alert-danger").html("Ensure order information").show();
     }
     else{
+        if ($("#onDeliver").is(':checked')) {
+            deliverymethod = "onDeliver";
+        }
+        else if ($("#bkash").is(':checked')) {
+            deliverymethod = "bkash";
+        }
+        if (deliverymethod = 'bkash') {
+            if ($("#confirmation").val().length != 0) {
+                submit();
+            }else{
+                $("#finalAlert").removeClass("alert-success").addClass("alert-danger").html("Confirm transiction code.").show();
+            }
+        }else{
+            submit();
+        }
+    }
+
+    function submit() {
         var formdata = new FormData();
         formdata.append("address",address);
         formdata.append("order","order");
@@ -45,9 +64,8 @@ function place_order() {
             type:"post",
             url:"data.php",
             success:function(data){
-                $(".alert").removeClass("alert-danger").html("");
-                $(".alert").addClass("alert-success").html("Your order adedd successfully! <a href='index.php'>Countinue shopping</a>").show();
-                location.href="index.php";
+                $("#finalAlert").removeClass("alert-danger").addClass("alert-success").html("Your order adedd successfully! <a href='index.php'>Countinue shopping</a>").show();
+                setTimeout(function(){ location.href="index.php"; }, 3000);
             },
             cache:false
         });

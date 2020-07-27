@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2020 at 06:46 AM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.4.8
+-- Generation Time: Jul 27, 2020 at 10:39 AM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -158,7 +159,12 @@ INSERT INTO `orders` (`id`, `address`, `product_id`, `product_quantity`, `order_
 (50, 'asfgfdfhgjkk\nukfhyukhk\nkhjk\njkjhkhf\nkhjfk\nfhkhjk\nhjkhj\nkj', '21', 2, 2, 'complete', '20-07-2020', '20-07-2020', 2, 6),
 (49, 'asfgfdfhgjkk\nukfhyukhk\nkhjk\njkjhkhf\nkhjfk\nfhkhjk\nhjkhj\nkj', '23', 2, 2, 'complete', '20-07-2020', '20-07-2020', 2, 6),
 (48, 'Rahmannagar', '22', 3, 1, 'complete', '20-07-2020', '20-07-2020', 2, 6),
-(47, 'Rahmannagar', '24', 3, 1, 'complete', '20-07-2020', '20-07-2020', 2, 6);
+(47, 'Rahmannagar', '24', 3, 1, 'complete', '20-07-2020', '20-07-2020', 2, 6),
+(51, 'asd', '22', 2, 3, 'request', '27-07-2020', '', 0, 15),
+(52, '', '21', 1, 4, 'request', '27-07-2020', '', 0, 15),
+(53, 'asd', '21', 4, 5, 'request', '27-07-2020', '', 0, 15),
+(54, 'as', '23', 2, 6, 'request', '27-07-2020', '', 0, 15),
+(55, 'asds', '23', 2, 7, 'request', '27-07-2020', '', 0, 15);
 
 --
 -- Indexes for dumped tables
@@ -238,7 +244,7 @@ ALTER TABLE `item-detail`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
