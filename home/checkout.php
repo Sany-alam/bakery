@@ -77,14 +77,14 @@ if (isset($_SESSION['user'])) {
                         </ul>
 
                         <h5><b>Payment</b></h5>
-                        <input id="onDeliver" type="radio" name="deliverymethod" checked class="mr-2" value="delivery">
-                        <label for="onDeliver" class="mr-4">Cash on delivery</label>
-                        <input id="bkash" type="radio" name="deliverymethod" class="mr-2" value="bkash">
+                        <input id="onDeliver" type="radio" name="deliverymethod" checked class="mr-2">
+                        <label for="onDeliver">Cash on delivery</label>
+                        <input id="bkash" type="radio" name="deliverymethod">
                         <label for="bkash">Bkash</label>
 
                         <hr>
                         <textarea id="address" class="form-control mb-2" placeholder="Your address"></textarea>
-                        <div class="alert" id="finalAlert">Ensure your address</div>
+                        <div class="alert">Ensure your address</div>
                         <button onclick="place_order()">Place Order</button>
                     </div>
                 </div>
@@ -99,15 +99,12 @@ if (isset($_SESSION['user'])) {
                     <span aria-hidden="true">&times;</span>
                 </button>
                 <div class="modal-body">
-                    <div class="alert" id="confirmationAlert"></div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis ab quas eos nemo doloremque consectetur odio, voluptatibus quod accusamus non ducimus. Similique consequatur nisi vel doloribus commodi, hic dolor deserunt?</p>
+                    <p><strong>Merchant No: +8801858814456</strong></p>
                     <hr>
-                    <form id="confirmationSubmit">
-                    <label for="confirmation">Transiction code</label>
-                    <input type="text" class="form-control" id="confirmation">
+                    <label for="transaction">Ener transaction id</label>
+                    <input id="transaction" type="text" class="form-control">
 
-                    <button style="margin-top:10px;height: 45px;width: 100%;background: #ef4836;text-transform: uppercase;color: #fff;border: none;">Submit</button>
-                    </form>
+                    <button onclick="transaction_submit()" style="margin-top:10px;height: 45px;width: 100%;background: #ef4836;text-transform: uppercase;color: #fff;border: none;">Submit</button>
                 </div>
             </div>
         </div>
@@ -120,17 +117,11 @@ if (isset($_SESSION['user'])) {
     <!-- all js -->
     <?php include("includes/scripts.php"); ?>
     <script>
-    var codeConfirm = false;
-    document.querySelector(".alert").style.display='none';
-    $("#confirmationSubmit").submit(function(e) {
-        e.preventDefault();
-        if ($("#confirmation").val().length != 0) {
-            $("#exampleModalCenter").modal("hide");
-            $("#confirmationAlert").removeClass("alert-danger").html("").hide();
-        }else{
-            $("#confirmationAlert").addClass("alert-danger").html("Field must not empty").show();
+    function transaction_submit() {
+        if ($("#transaction").val().length!=0) {
+            $("#exampleModalCenter").modal('hide');
         }
-    })
+    }
     </script>
 </body>
 </html>

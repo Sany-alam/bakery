@@ -16,7 +16,14 @@
                         if (isset($_SESSION['user'])) {
                             ?>
                             <li><a href="myorders.php">My Orders</a></li>
+                            <li><a href="change-password.php">Change password</a></li>
                             <li><a href="logout.php" onclick="cart_flash()">Logout</a></li>
+                            <li>
+                                <div class="d-flex justify-content-between" style="color: #ef4836;border: 1px solid #ef4836;">
+                                <span style="padding: 0px 10px;"><i class="fa fa-user"></i>
+                                <?php echo $_SESSION['user']['name']; ?></span>
+                                </div>
+                            </li>
                             <?php
                         }else {
                             ?>
@@ -25,22 +32,11 @@
                             <?php
                         }
                         ?>
-                        <!-- <li>
-                            <a href="javascript:void(0);">Foods<i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown_style">
-                                <li><a href="blog.html">
-                                 Page</a></li>
-                                <li><a href="blog-details.html">blog Details</a></li>
-                            </ul>
-                        </li> -->
-                        <!-- <li><a href="javascript:void(0)">Foods</a></li>
-                        <li><a href="javascript:void(0)">Contact</a></li> -->
                     </ul>
                 </nav>
             </div>
             <div class="col-md-4 col-lg-2 col-sm-5 col-4">
                 <ul class="search-cart-wrapper d-flex">
-                    <!-- <li class="search-tigger"><a href="javascript:void(0);"><i class="flaticon-search"></i></a></li> -->
                     <!-- cart.php -->
                     <li><a href="cart.php"><i class="flaticon-shop"></i> 
                     <span id="countCart"></span>
@@ -65,9 +61,44 @@
             <div class="row">
                 <div class="col-12 d-block d-lg-none">
                     <ul class="metismenu">
+                    <?php
+                        if (isset($_SESSION['user'])) {
+                            $user = $_SESSION['user'];
+                            $user_id = $user['id'];
+                            $sql_user_status = "SELECT * FROM `orders` WHERE `customer` = '$user_id' GROUP BY `order_no`";
+                            $res_user_status = mysqli_query($conn,$sql_user_status);
+                            if (mysqli_num_rows($res_user_status)<11) {
+                                $user_status = 'NEW USER';
+                            }else if(mysqli_num_rows($res_user_status)<21){
+                                $user_status = 'GOLD USER';
+                            }else{
+                                $user_status = 'PREMIUM USER';
+                            }
+                            ?>
+                            <li>
+                                <div class="d-flex justify-content-between" style="color: #ef4836;border: 1px solid #ef4836;">
+                                <span style="padding: 0px 10px;"><i class="fa fa-user"></i>
+                                <?php echo $user['name']; ?></span>
+                                <span style="background:#ef4836;color:white;padding: 0px 5px;"><?php echo $user_status; ?></span>
+                                </div>
+                            </li>
+                            <?php
+                        }
+                        ?>
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="javascript:void(0)">Foods</a></li>
-                        <li><a href="javascript:void(0)">Contact</a></li>
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            ?>
+                            <li><a href="myorders.php">My Orders</a></li>
+                            <li><a href="logout.php" onclick="cart_flash()">Logout</a></li>
+                            <?php
+                        }else {
+                            ?>
+                            <li><a href="login.php">Login</a></li>
+                            <li><a href="signup.php">Signup</a></li>
+                            <?php
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>

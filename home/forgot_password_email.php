@@ -63,7 +63,7 @@ if (!isset($_SESSION['cart'])) {
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
                     <div class="account-form form-style">
-                        <h1 class="text-center">Login</h1>
+                        <h1 class="text-center">Enter Email </h1>
                         <?php 
                         if (isset($_SESSION['register'])) {
                             ?>
@@ -72,21 +72,17 @@ if (!isset($_SESSION['cart'])) {
                             unset($_SESSION['register']);
                         }
                         ?>
-                        <form id="login" action="data.php" method="post">
-                        <p>Email Address *</p>
+                        <form id="forgot_password_email" action="data.php" method="post">
+                        <p>Enter Email</p>
                         <input name="email" type="email">
-                        <p>Password *</p>
-                        <input name="password" type="Password">
-                        <input type="hidden" name="login">
-                        
+                
+                        <input type="hidden" name="forgot_password_email">
+                       
                         <div id="login-alert" class="alert alert-danger"></div>
-                        <div class="text-center" style = "float:right">
-                            <a href="forgot_password_email.php">Forgot Password</a>
-                        </div>
-                        <button type="submit">SIGN IN</button>
-                        <div class="text-center">
+                        <button type="submit">Send Email</button>
+                        <!-- <div class="text-center">
                             <a href="signup.php">Or Create an Account</a>
-                        </div>
+                        </div> -->
                         
                         </form>
                     </div>
@@ -123,26 +119,24 @@ if (!isset($_SESSION['cart'])) {
     <!-- custom java scripts and ajax -->
     <script>
         document.querySelector("#login-alert").style.display="none";
-        $("#login").on('submit',function(e){
+        $("#forgot_password_email").on('submit',function(e){
             e.preventDefault();
-            if ($("input[name='email']").val().length!=0&&$("input[name='password']").length!=0) {
+            if ($("input[name='email']").val().length!=0) {
                 $.ajax({
                     url:'data.php',
                     type:'post',
-                    data:$("#login").serialize(),
+                    data:$("#forgot_password_email").serialize(),
                     success:function(data) {
                         console.log(data);
                         a = $.trim(data);
-                        if (a == 'ok') {
-                            document.querySelector("#login-alert").style.display="none";
-                            location.reload();
-                        }
-                        else if(a == 'email'){
-                            document.querySelector("#login-alert").innerHTML="Credentials not verified";
+                     
+                        if(a == 'registered'){
+                            document.querySelector("#login-alert").innerHTML="Password reset link has sent to your email. Please check spam folder too.";
                             document.querySelector("#login-alert").style.display="block";
+                            
                         }
                         else{
-                            document.querySelector("#login-alert").innerHTML="Invalid credentials";
+                            document.querySelector("#login-alert").innerHTML="Please enter registered email";
                             document.querySelector("#login-alert").style.display="block";
                         }
                     }

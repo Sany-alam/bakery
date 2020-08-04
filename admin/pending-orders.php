@@ -105,6 +105,14 @@ include("../connection.php");
                                 <span class="title">Courier</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="user_list.php">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-appstore"></i>
+                                </span>
+                                <span class="title">Customer</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -139,8 +147,9 @@ include("../connection.php");
                                             <th>Customer</th>
                                             <th>Delivery courier</th>
                                             <th>Order Date</th>
-                                            <th>Products</th>
                                             <th>Status</th>
+                                            <th>Products</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody id="order-on-delivery">

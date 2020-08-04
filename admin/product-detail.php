@@ -99,6 +99,14 @@ include("../connection.php");
                                 <span class="title">Courier</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="user_list.php">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-appstore"></i>
+                                </span>
+                                <span class="title">Customer</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -133,56 +141,14 @@ include("../connection.php");
                                             </th>
                                             <th>ID</th>
                                             <th>Product</th>
+                                            <th>Quantity</th>
                                             <th>Category</th>
                                             <th>Price</th>
                                             <th>#</th>
                                         </tr>
                                     </thead>
                                     <tbody id="products">
-                                        <?php
-                                        // $sql = "SELECT * FROM `item-detail` order by id desc";
-                                        // $res = mysqli_query($conn,$sql);
-                                        // if (mysqli_num_rows($res)>0) {
-                                        //     while ($item = mysqli_fetch_array($res)) {
-                                        ?>
-                                   <!-- <tr>
-                                       <td>
-                                           <div class="checkbox">
-                                               <input id="check-item-1" type="checkbox">
-                                               <label for="check-item-1" class="m-b-0"></label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            #31
-                                        </td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img class="img-fluid rounded" src="assets/images/others/thumb-9.jpg" style="max-width: 60px" alt="">
-                                                <h6 class="m-b-0 m-l-10">Gray Sofa</h6>
-                                            </div>
-                                        </td>
-                                        <td>Home Decoration</td>
-                                        <td>$912.00</td>
-                                        <td>20</td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <div class="badge badge-success badge-dot m-r-10"></div>
-                                                <div>In Stock</div>
-                                            </div>
-                                        </td>
-                                        <td class="text-right">
-                                            <button class="btn btn-icon btn-hover btn-sm btn-rounded pull-right">
-                                                <i class="anticon anticon-edit"></i>
-                                            </button>
-                                            <button class="btn btn-icon btn-hover btn-sm btn-rounded">
-                                                <i class="anticon anticon-delete"></i>
-                                            </button>
-                                        </td>
-                                    </tr> -->
-                                        <?php
-                                        //     }
-                                        // }
-                                        ?>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -205,6 +171,10 @@ include("../connection.php");
                                 <div class="form-group">
                                     <label for="edit_product_name">Name</label>
                                     <input id="edit_product_name" type="text" class="form-control" placeholder="Enter item name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit_product_quantity">Item quantity</label>
+                                    <input min="1" placeholder="Enter item quantity" type="number" class="form-control" id="edit_product_quantity">
                                 </div>
                                 <div class="form-group">
                                     <label for="edit_product_price">Price</label>
@@ -230,13 +200,6 @@ include("../connection.php");
 
     <!-- Core Vendors JS -->
     <script src="assets/js/vendors.min.js"></script>
-
-    <!-- page js -->
-    <script src="assets/vendors/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/pages/e-commerce-order-list.js"></script>
-    <!-- <script src="assets/vendors/chartjs/Chart.min.js"></script> -->
-    <!-- <script src="assets/js/pages/dashboard-default.js"></script> -->
 
     <!-- Core JS -->
     <script src="assets/js/app.min.js"></script>

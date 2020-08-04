@@ -1,6 +1,18 @@
 <?php
 include("../connection.php");
 
+if (isset($_POST['reject_order'])) {
+    $id = $_POST['order_no'];
+    $sql= "SELECT * FROM `orders` WHERE `order_no` = '$id'";
+    $res = mysqli_query($conn,$sql);
+    $fetch=mysqli_fetch_array($res);
+    $courier=$fetch['courier'];
+    $sql_order= "UPDATE `orders` SET `status`='request',`courier`='' WHERE `order_no` = '$id' AND `status` = 'processing'";
+    $res_order = mysqli_query($conn,$sql_order);
+    $sql_courier= "UPDATE `courier` SET `status`= 0 WHERE `id` = '$courier'";
+    $res_courier = mysqli_query($conn,$sql_courier);
+}
+
 if(isset($_POST['sell_by_day'])){
     $date = $_POST['date'];
     $pieces_of_date = explode("-",$date);
@@ -209,9 +221,14 @@ if (isset($_POST['complete_orders'])) {
                     $customer = $item['customer'];
                     $sql_customer = "SELECT * FROM `customer` WHERE `id` = '$customer'";
                     $res_customer = mysqli_query($conn,$sql_customer);
-                    $item_customer = mysqli_fetch_assoc($res_customer);
+                    if (mysqli_num_rows($res_customer)>0) {
+                        $item_customer = mysqli_fetch_array($res_customer);
+                        $cuatomer_name = $item_customer['name'];
+                    }else {
+                        $cuatomer_name = "Unknown";
+                    }
                     ?>
-                    <h6 class="m-b-0"><?php echo $item_customer['name'] ?></h6>
+                    <h6 class="m-b-0"><?php echo $cuatomer_name ?></h6>
                 </div>
             </td>
             <td>
@@ -320,16 +337,19 @@ if (isset($_POST['show_pending_orders'])) {
                 </td>
                 <td><?php echo $item['order_date'] ?></td>
                 <td>
-                    <button onclick="product_detail(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
-                        Products
-                    </button>
-                </td>
-                <td>
                     <div class="d-flex align-items-center">
                         <div class="badge badge-primary badge-dot m-r-10">
                         </div>
                         <div>On delivery</div>
                     </div>
+                </td>
+                <td>
+                    <button onclick="product_detail(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-primary" data-toggle="modal" data-target="products-modal">
+                        Products
+                    </button>
+                </td>
+                <td>
+                    <button onclick="cancel_order(<?php echo $item['order_no']; ?>)" class="btn btn-sm btn-danger">Cancel</button>
                 </td>
             </tr>
             <?php
@@ -582,13 +602,51 @@ if (isset($_POST['add_category'])) {
         }
     }
 }
+if (isset($_POST['customers'])) {
+    $sql = "SELECT * FROM `customer` ORDER BY id desc";
+    $res = mysqli_query($conn,$sql);
+    ?>
+    <div class="mt-5 table-responsive">
+        <table class="table table-hover e-commerce-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                while ($fetch = mysqli_fetch_array($res)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $fetch['id']; ?></td>
+                        <td><?php echo $fetch['name']; ?></td>
+                        <td><?php echo $fetch['phone']; ?></td>
+                        <td><?php echo $fetch['email']; ?></td>
+                       
+                    </tr>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+    <script src="assets/vendors/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/pages/e-commerce-order-list.js"></script>
+    <?php
+}
 
 
 if (isset($_POST['save_Item'])) {
     $id = $_POST['save_Item_id'];
     $name = $_POST['save_Item_name'];
+    $quantity = $_POST['save_Item_quantity'];
     $price = $_POST['save_Item_price'];
-    $sql = "UPDATE `item-detail` SET `name`='$name',`price`='$price' WHERE `id` = '$id'";
+    $sql = "UPDATE `item-detail` SET `name`='$name',`quantity`='$quantity',`price`='$price' WHERE `id` = '$id'";
     $res = mysqli_query($conn,$sql);
 }
 
@@ -605,9 +663,7 @@ if (isset($_POST['edit_Item'])) {
 if (isset($_POST['display_item'])) {
     $sql = "SELECT * FROM `item-detail` order by id desc";
     $res = mysqli_query($conn,$sql);
-    // if (mysqli_num_rows($res)>0) {
-        // $i = 0;
-        for ($i=1; $i < $item = mysqli_fetch_array($res); $i++) {
+    for ($i=1; $i < $item = mysqli_fetch_array($res); $i++) {
     ?>
     <tr>
     <td>
@@ -623,6 +679,7 @@ if (isset($_POST['display_item'])) {
                 <h6 class="m-b-0 m-l-10"><?php echo $item['name']; ?></h6>
             </div>
         </td>
+        <td><?php echo $item['quantity']; ?></td>
         <td><?php echo $item['category']; ?></td>
         <td><?php echo $item['price']; ?> Tk</td>
         <td class="text-right">
@@ -634,20 +691,19 @@ if (isset($_POST['display_item'])) {
             </button>
         </td>
     </tr>
+    <!-- page js -->
+    <script src="assets/vendors/datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/pages/e-commerce-order-list.js"></script>
     <?php
-        }
-    // }
-    // else {
-        ?>
-        <!-- <div class="text-center">No item available, add item to <a data-toggle="modal" href="#Additems">Click here</a></div> -->
-        <?php
-    // }
+    }
 }
 
 
 
 if (isset($_POST['add_item'])) {
     $name = $_POST['name'];
+    $quantity = $_POST['quantity'];
     $category = $_POST['category'];
     $price = $_POST['price'];
     $des = $_POST['description'];
@@ -655,8 +711,7 @@ if (isset($_POST['add_item'])) {
     $img_name = $_FILES['image']['name'];
     $dir = "../assets/images/";
     move_uploaded_file($img['tmp_name'],"../assets/images/".$img['name']);
-    // echo $name." ".$des." ".$img['type'];
-    $sql = "INSERT INTO `item-detail`(`name`, `category`, `price`,`description`, `img`) VALUES ('$name','$category','$price','$des','$dir$img_name')";
+    $sql = "INSERT INTO `item-detail`(`name`,`quantity`, `category`, `price`,`description`, `img`) VALUES ('$name','$quantity','$category','$price','$des','$dir$img_name')";
     $res = mysqli_query($conn,$sql);
 }
 

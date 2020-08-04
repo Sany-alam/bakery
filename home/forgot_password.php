@@ -20,6 +20,10 @@ $ip = ip();
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = array($ip);
 }
+if ($_GET['token']) {
+    $token = $_GET['token'];
+    file_put_contents('test2.txt',$token);
+}
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -63,30 +67,28 @@ if (!isset($_SESSION['cart'])) {
             <div class="row">
                 <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
                     <div class="account-form form-style">
-                        <h1 class="text-center">Login</h1>
+                        <h1 class="text-center">Change Password</h1>
                         <?php 
                         if (isset($_SESSION['register'])) {
                             ?>
-                            <div class="alert alert-success"><?php echo $_SESSION['register'] ?></div>
+                            
                             <?php
                             unset($_SESSION['register']);
                         }
                         ?>
-                        <form id="login" action="data.php" method="post">
-                        <p>Email Address *</p>
-                        <input name="email" type="email">
-                        <p>Password *</p>
+                        <form id="forgot_password" action="data.php" method="post">
+                        <p>New Password *</p>
                         <input name="password" type="Password">
-                        <input type="hidden" name="login">
-                        
+                        <p>Repeat Password *</p>
+                        <input name="r-password" type="Password">
+                        <input type="hidden" name="forgot_password">
+                        <input type="hidden" name="token" value ="<?php echo $token ?>">
+                       
                         <div id="login-alert" class="alert alert-danger"></div>
-                        <div class="text-center" style = "float:right">
-                            <a href="forgot_password_email.php">Forgot Password</a>
-                        </div>
-                        <button type="submit">SIGN IN</button>
-                        <div class="text-center">
+                        <button type="submit">Change Password</button>
+                        <!-- <div class="text-center">
                             <a href="signup.php">Or Create an Account</a>
-                        </div>
+                        </div> -->
                         
                         </form>
                     </div>
@@ -123,26 +125,25 @@ if (!isset($_SESSION['cart'])) {
     <!-- custom java scripts and ajax -->
     <script>
         document.querySelector("#login-alert").style.display="none";
-        $("#login").on('submit',function(e){
+        $("#forgot_password").on('submit',function(e){
             e.preventDefault();
-            if ($("input[name='email']").val().length!=0&&$("input[name='password']").length!=0) {
+            if ($("input[name='password']").val().length!=0) {
                 $.ajax({
                     url:'data.php',
                     type:'post',
-                    data:$("#login").serialize(),
+
+                    data:$("#forgot_password").serialize(),
                     success:function(data) {
                         console.log(data);
                         a = $.trim(data);
                         if (a == 'ok') {
                             document.querySelector("#login-alert").style.display="none";
-                            location.reload();
+                            alert('Your password has been changed.Login with new password');
+                            location.href="login.php";
                         }
-                        else if(a == 'email'){
-                            document.querySelector("#login-alert").innerHTML="Credentials not verified";
-                            document.querySelector("#login-alert").style.display="block";
-                        }
+                       
                         else{
-                            document.querySelector("#login-alert").innerHTML="Invalid credentials";
+                            document.querySelector("#login-alert").innerHTML="Password Not match";
                             document.querySelector("#login-alert").style.display="block";
                         }
                     }

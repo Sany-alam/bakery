@@ -94,6 +94,7 @@ $customer = $_SESSION['user']['id'];
                                             <tr>
                                                 <th>Id</th>
                                                 <th>Date</th>
+                                                <th>Time</th>
                                                 <th>Products</th>
                                             </tr>
                                         </thead>
@@ -107,6 +108,7 @@ $customer = $_SESSION['user']['id'];
                                                     <tr>
                                                         <td><?php echo $fetch_req['id']; ?></td>
                                                         <td><?php echo $fetch_req['order_date']; ?></td>
+                                                        <td><?php echo $fetch_req['order_time']; ?></td>
                                                         <td><a onclick="products('<?php echo $fetch_req['order_no']; ?>')" href="javascript:;">Products</a></td>
                                                     </tr>
                                                     <?php

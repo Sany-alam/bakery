@@ -128,6 +128,7 @@ if (isset($_POST['order_requests'])) {
         <tr>
             <td><?php echo $fetch['id']; ?></td>
             <td><?php echo $fetch['order_date']; ?></td>
+            <td><?php echo $fetch['order_time']; ?></td>
             <td><?php echo $item_customer['name']; ?></td>
             <td><?php echo $fetch['address']; ?></td>
             <td><?php echo $item_customer['phone']; ?></td>

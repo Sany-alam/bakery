@@ -14,6 +14,11 @@ if(!isset($_SESSION['courier'])){
         <div style="height:100vh;" class="d-flex justify-content-center align-items-center">
             <div class="card">
                 <div class="card-body">
+                <div class="d-flex p-h-40 mb-3">
+                 <?php include("../admin/includes/logo.php"); ?>
+                </div>
+                <h6 class="text-center">(Courier Panel)</h6>
+                <hr class="mt-0 mb-4">
                 <div id="alert"></div>
                     <div class="form-group">
                         <label for="name">Enter name</label>

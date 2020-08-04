@@ -6,6 +6,27 @@ $(function(){
     category_list();
 });
 
+function cancel_order(order_no) {
+    var status = confirm("Are you sure to cancel this order from this courier man?");
+    if (status) {
+        var formdata = new FormData();
+        formdata.append("order_no",order_no);
+        formdata.append("reject_order","reject_order");
+        $.ajax({
+            processData:false,
+            contentType:false,
+            data:formdata,
+            type:"post",
+            url:"data.php",
+            success:function(data)
+            {
+                show_pending_orders();
+            },
+            cache:false
+        });
+    }else{}
+}
+
 $("#date").change(function () {
     var formdata = new FormData();
     formdata.append("sell_by_day","sell_by_day");
@@ -271,25 +292,31 @@ $('#add-category').click(function(){
 $("#edit_product_save").click(function() {
     var id = $("#edit_product_id").val();
     var name =$("#edit_product_name").val();
+    var quantity =$("#edit_product_quantity").val();
     var price = $("#edit_product_price").val();
-    var formdata = new FormData();
-    formdata.append("save_Item_id",id);
-    formdata.append("save_Item_name",name);
-    formdata.append("save_Item_price",price);
-    formdata.append("save_Item","save_Item");
-    $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        show_items();
-        $("#edit_item_modal").modal("hide");
-    },
-    cache:false
-    });
+    if ($("#edit_product_quantity").val()<1) {
+        alert("Add minimum 1 item");
+    }else{
+        var formdata = new FormData();
+        formdata.append("save_Item_id",id);
+        formdata.append("save_Item_name",name);
+        formdata.append("save_Item_quantity",quantity);
+        formdata.append("save_Item_price",price);
+        formdata.append("save_Item","save_Item");
+        $.ajax({
+            processData:false,
+            contentType:false,
+            data:formdata,
+            type:"post",
+            url:"data.php",
+            success:function(data)
+            {
+                show_items();
+                $("#edit_item_modal").modal("hide");
+            },
+            cache:false
+        });
+    }
 });
 
 
@@ -308,6 +335,7 @@ function editItem(id) {
         all = JSON.parse(data);
         $("#edit_product_id").val(all.id);
         $("#edit_product_name").val(all.name);
+        $("#edit_product_quantity").val(all.quantity);
         $("#edit_product_price").val(all.price);
         $("#edit_item_modal").modal("show");
     },
@@ -334,35 +362,41 @@ function show_items() {
 }
 
 $("#add_Items").click(function() {
-    if ($("#add-item-name").val().lentgh == 0 || $("#add-item-description").val().length == 0 || $("#add-item-image")[0].files[0].length == 0 || $("#add-item-category").val().length == 0) {
-        $("#Additems").modal("hide");
+    if ($("#add-item-name").val().lentgh == 0 || $("#add-item-description").val().length == 0 || $("#add-item-image").val().length == 0 || $("#add-item-category").val().length == 0 && $("#add-item-quantity").val().length==0) {
+        alert("Fill all inputs");
     }
     else{
-    var name = $("#add-item-name").val();
-    var price = $("#add-item-price").val();
-    var category = $("#add-item-category").val();
-    var description = $("#add-item-description").val();
-    var image = $("#add-item-image")[0].files[0];
-    var formdata = new FormData();
-    formdata.append("name",name);
-    formdata.append("price",price);
-    formdata.append("category",category);
-    formdata.append("description",description);
-    formdata.append("image",image);
-    formdata.append("add_item","add_item");
-    $.ajax({
-    processData:false,
-    contentType:false,
-    data:formdata,
-    type:"post",
-    url:"data.php",
-    success:function(data)
-    {
-        show_items();
-        alert("Product added successfully");
-    },
-    cache:false
-    });
+        if ($("#add-item-quantity").val()<1) {
+            alert("Add minimum 1 item");
+        }else{
+            var name = $("#add-item-name").val();
+            var price = $("#add-item-price").val();
+            var quantity = $("#add-item-quantity").val();
+            var category = $("#add-item-category").val();
+            var description = $("#add-item-description").val();
+            var image = $("#add-item-image")[0].files[0];
+            var formdata = new FormData();
+            formdata.append("name",name);
+            formdata.append("quantity",quantity);
+            formdata.append("price",price);
+            formdata.append("category",category);
+            formdata.append("description",description);
+            formdata.append("image",image);
+            formdata.append("add_item","add_item");
+            $.ajax({
+            processData:false,
+            contentType:false,
+            data:formdata,
+            type:"post",
+            url:"data.php",
+            success:function(data)
+            {
+                show_items();
+                alert("Product added successfully");
+            },
+            cache:false
+            });
+        }
     }
 });
 

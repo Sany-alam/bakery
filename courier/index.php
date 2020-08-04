@@ -43,7 +43,8 @@ if (isset($_SESSION['courier'])) {
                 <thead>
                     <tr>
                         <th>Order no</th>
-                        <th>order date</th>
+                        <th>Order date</th>
+                        <th>Order time</th>
                         <th>Customer Name</th>
                         <th>Customer Address</th>
                         <th>Customer Phone</th>

@@ -105,6 +105,14 @@ include("../connection.php");
                                 <span class="title">Courier</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="user_list.php">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-appstore"></i>
+                                </span>
+                                <span class="title">Customer</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -114,7 +122,7 @@ include("../connection.php");
             <div class="page-container">
                 <!-- Content Wrapper START -->
                 <div class="main-content">
-                <div class="page-header">
+                    <div class="page-header">
                         <h2 class="header-title">Add Product</h2>
                         <div class="header-sub-title">
                             <nav class="breadcrumb breadcrumb-dash">
@@ -129,39 +137,43 @@ include("../connection.php");
                             <h3 class="text-center">Add product</h3>
                         </div>
                         <div class="card-body ">
-                        <div class="form-group">
-                    <label for="add-item-name">Item name</label>
-                    <input placeholder="Enter item name"type="text" class="form-control" id="add-item-name">
-                </div>
-                <div class="form-group">
-                    <label for="add-item-category">Item category</label>
-                    <select id="add-item-category" class="form-control form-control-sm">
-                        <option value="">Category</option>
-                        <?php
-                        $sql_category = "SELECT * FROM `category`";
-                        $res_category = mysqli_query($conn,$sql_category);
-                        while ($item_category = mysqli_fetch_array($res_category)) {
-                            $category = $item_category['category'];
-                        ?>
-                        <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="add-item-price">Item price</label>
-                    <input placeholder="Enter item price" type="number" class="form-control" id="add-item-price">
-                </div>
-                <div class="form-group">
-                    <label for="add-item-description">Item description</label>
-                    <input placeholder="Enter item description" type="text" class="form-control" id="add-item-description">
-                </div>
-                <div class="form-group">
-                    <label for="add-item-image">Item image</label>
-                    <input type="file" class="form-control" id="add-item-image">
-                </div>
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary" id="add_Items">Add product</button>
-                </div>
+                            <div class="form-group">
+                                <label for="add-item-name">Item name</label>
+                                <input placeholder="Enter item name"type="text" class="form-control" id="add-item-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-item-quantity">Item quantity</label>
+                                <input min="1" placeholder="Enter item quantity" type="number" class="form-control" id="add-item-quantity">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-item-category">Item category</label>
+                                <select id="add-item-category" class="form-control form-control-sm">
+                                    <option value="">Category</option>
+                                    <?php
+                                    $sql_category = "SELECT * FROM `category`";
+                                    $res_category = mysqli_query($conn,$sql_category);
+                                    while ($item_category = mysqli_fetch_array($res_category)) {
+                                        $category = $item_category['category'];
+                                    ?>
+                                    <option value="<?php echo $category; ?>"><?php echo $category; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="add-item-price">Item price</label>
+                                <input placeholder="Enter item price" type="number" class="form-control" id="add-item-price">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-item-description">Item description</label>
+                                <input placeholder="Enter item description" type="text" class="form-control" id="add-item-description">
+                            </div>
+                            <div class="form-group">
+                                <label for="add-item-image">Item image</label>
+                                <input type="file" class="form-control" id="add-item-image">
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary" id="add_Items">Add product</button>
+                            </div>
                         </div>
                     </div>
                 </div>

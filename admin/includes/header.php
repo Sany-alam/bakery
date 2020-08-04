@@ -17,6 +17,9 @@
                 </a>
             </li>
         </ul>
+        <ul class="nav-center">
+        <h5 class="py-4">Admin Panel</h5>
+        </ul>
         <ul class="nav-right">
             <li>
                 <a href="logout.php">

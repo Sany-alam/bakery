@@ -15,7 +15,7 @@ if (mysqli_num_rows($res)>0) {
         <div class="product-icon flex-style">
         <ul>
         <!-- <li><a href="javascript:void(0)" onclick="veiwItem(<?php echo $items['id'] ?>)"><i class="fa fa-eye"></i></a></li> -->
-        <li><a href="javascript:void(0)" onclick="add_cart('<?php echo $items['id']; ?>','<?php echo $items['name']; ?>','<?php echo $items['img']; ?>','<?php echo $items['price']; ?>')"><i class="fa fa-cart-plus"></i></a></li>
+        <li><a href="javascript:void(0)" onclick="add_cart('<?php echo $items['id']; ?>','<?php echo $items['name']; ?>','<?php echo $items['quantity']; ?>','<?php echo $items['img']; ?>','<?php echo $items['price']; ?>')"><i class="fa fa-cart-plus"></i></a></li>
         </ul>
         </div>
         </div>

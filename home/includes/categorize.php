@@ -21,8 +21,7 @@ $res = mysqli_query($conn,$sql);
                     <img src="<?php echo $item['img'] ?>" alt="">
                     <div class="product-icon flex-style">
                         <ul>
-                            <!-- <li><a href="javascript:void(0)" onclick="veiwItem(<?php echo $item['id'] ?>)"><i class="fa fa-eye"></i></a></li> -->
-                            <li><a href="javascript:void(0)" onclick="add_cart(<?php echo $item['id']; ?>,'<?php echo $item['name']; ?>','<?php echo $item['img']; ?>','<?php echo $item['price']; ?>')"><i class="fa fa-cart-plus"></i></a></li>
+                            <li><a href="javascript:void(0)" onclick="add_cart(<?php echo $item['id']; ?>,'<?php echo $item['name']; ?>',<?php echo $item['quantity']; ?>,'<?php echo $item['img']; ?>','<?php echo $item['price']; ?>')"><i class="fa fa-cart-plus"></i></a></li>
                         </ul>
                     </div>
                 </div>

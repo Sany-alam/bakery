@@ -30,30 +30,11 @@ function products(order_id) {
 
 function place_order() {
     var address = $("#address").val();
-    var deliverymethod = $("input[name='deliverymethod']").val();
-    if (address.length ==0 || deliverymethod.length==0) {
-        $("#finalAlert").removeClass("alert-success").html("");
-        $("#finalAlert").addClass("alert-danger").html("Ensure order information").show();
+    if (address.length ==0) {
+        $(".alert").removeClass("alert-success").html("");
+        $(".alert").addClass("alert-danger").html("Ensure your address").show();
     }
     else{
-        if ($("#onDeliver").is(':checked')) {
-            deliverymethod = "onDeliver";
-        }
-        else if ($("#bkash").is(':checked')) {
-            deliverymethod = "bkash";
-        }
-        if (deliverymethod = 'bkash') {
-            if ($("#confirmation").val().length != 0) {
-                submit();
-            }else{
-                $("#finalAlert").removeClass("alert-success").addClass("alert-danger").html("Confirm transiction code.").show();
-            }
-        }else{
-            submit();
-        }
-    }
-
-    function submit() {
         var formdata = new FormData();
         formdata.append("address",address);
         formdata.append("order","order");
@@ -64,8 +45,8 @@ function place_order() {
             type:"post",
             url:"data.php",
             success:function(data){
-                $("#finalAlert").removeClass("alert-danger").addClass("alert-success").html("Your order adedd successfully! <a href='index.php'>Countinue shopping</a>").show();
-                setTimeout(function(){ location.href="index.php"; }, 3000);
+                alert("Your order adedd successfully! Countinue shopping");
+                location.href="index.php";
             },
             cache:false
         });
@@ -170,27 +151,41 @@ function show_cart() {
 $("#addTocart").click(function(){
     var id = $("#cart-hiddenid").val();
     var quantity = $("#quantity").val();
+    var maxQuantity = $("#cart-hiddenQuantity").val();
     if (quantity >= 1) {
-    var formdata = new FormData();
-    formdata.append("id",id);
-    formdata.append("quantity",quantity);
-    formdata.append("addCart","adCart");
-    $.ajax({
-        processData:false,
-        contentType:false,
-        data:formdata,
-        type:"post",
-        url:"data.php",
-        success:function(data){
-            countCart();
-            show_cart();
-            $("#AddToCartModal").modal('hide');
-        },
-        cache:false
-    });
+        if (Number(maxQuantity)==0) {
+            alert("Out of stock");
+        }else{
+            if (Number(quantity)>Number(maxQuantity)) {
+                alert("Add maxmum "+maxQuantity+" items");
+            }else{
+                var formdata = new FormData();
+                formdata.append("id",id);
+                formdata.append("quantity",quantity);
+                formdata.append("addCart","adCart");
+                $.ajax({
+                    processData:false,
+                    contentType:false,
+                    data:formdata,
+                    type:"post",
+                    url:"data.php",
+                    success:function(data){
+                        a = $.trim(data);
+                        if (a=="ok") {
+                            countCart();
+                            show_cart();
+                            $("#AddToCartModal").modal('hide'); 
+                        }else{
+                            alert(data);
+                        }
+                    },
+                    cache:false
+                });
+            }
+        }
     }
     else{
-        $("#AddToCartModal").modal('hide');
+        alert("Add minimum 1 item")
     }
     });
 
@@ -235,11 +230,27 @@ function veiwItem(id) {
     });
 }
 
-function add_cart(id,name,img,price) {
-    $("#cart-img").attr('src',img);
-    $("#cart-name").html(name);
-    $("#cart-hiddenid").val(id);
-    $("#quantity").val(1);
-    $("#cart-price").html(price+" Tk");
-    $("#AddToCartModal").modal('show');
+function add_cart(id) {
+    formdata = new FormData();
+    formdata.append("id",id);
+    formdata.append("viewIteminCardModal","viewIteminCardModal");
+    $.ajax({
+        processData:false,
+        contentType:false,
+        data:formdata,
+        type:"post",
+        url:"data.php",
+        success:function(data){
+            all = JSON.parse(data);
+            $("#cart-img").attr('src',all.img);
+            $("#cart-name").html(all.name+" ("+all.quantity+")");
+            $("#cart-hiddenQuantity").val(all.quantity);
+            $("#cart-hiddenid").val(all.id);
+            $("#quantity").val(1);
+            $("#quantity").attr("max",all.quantity);
+            $("#cart-price").html(all.price+" Tk");
+            $("#AddToCartModal").modal('show');
+        },
+        cache:false
+    });
 }

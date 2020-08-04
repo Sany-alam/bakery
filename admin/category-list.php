@@ -103,6 +103,14 @@ include("../connection.php");
                                 <span class="title">Courier</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="user_list.php">
+                                <span class="icon-holder">
+                                    <i class="anticon anticon-appstore"></i>
+                                </span>
+                                <span class="title">Customer</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
