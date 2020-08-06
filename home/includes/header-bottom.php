@@ -14,9 +14,36 @@
                         <li><a href="index.php">Home</a></li>
                         <?php
                         if (isset($_SESSION['user'])) {
-                            $a = $_SESSION['user'];
+                            $user_id = $_SESSION['user']['id'];
                             //echo josn_encode($a);
-                           file_put_contents('test.txt',json_encode($a));
+                           //file_put_contents('test.txt',$user_id);
+                           $sql = "SELECT * from orders where customer = $user_id";
+                           $res = mysqli_query($conn,$sql);
+                           $num_row = mysqli_num_rows($res);
+
+                           if($num_row>=0 && $num_row<9 )
+                           {
+                               $discount = 10;
+                               $status = 'Silver';
+                           }
+                           else if($num_row>=10 && $num_row<19)
+                           {
+                            $discount = 10;
+                            $status = 'Gold';
+                           }
+                           else if($num_row>=20 && $num_row<29)
+                           {
+                            $discount = 20;
+                            $status = 'Platinum';
+                           }
+                           else
+                           {
+                            $discount = 30;
+                            $status = 'Diamond';
+                           }
+ 
+                        $_SESSION['discount'] = $discount;
+
                             ?>
                             <li><a href="myorders.php">My Orders</a></li>
                             <li><a href="change-password.php">Change password</a></li>
@@ -25,6 +52,8 @@
                                 <div class="d-flex justify-content-between" style="color: #ef4836;border: 1px solid #ef4836;">
                                 <span style="padding: 0px 10px;"><i class="fa fa-user"></i>
                                 <?php echo $_SESSION['user']['name']; ?></span>
+                                <span style="padding: 0px 10px;"><i class="fa fa"></i>
+                                <?php echo $status.' '.($discount).'%' ?></span>
                                 </div>
                             </li>
                             <?php

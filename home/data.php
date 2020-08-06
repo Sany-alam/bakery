@@ -171,12 +171,21 @@ if (isset($_POST['order_list'])) {
         ?>
         <li><?php echo $_SESSION['cart'][$i]['name']; ?> *<?php echo $_SESSION['cart'][$i]['quantity']; ?> <span class="pull-right"><?php echo $_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity']; ?></span></li>
     <?php
-    $total = $total+$_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity'];;
+    $total = $total+$_SESSION['cart'][$i]['price']*$_SESSION['cart'][$i]['quantity'];
+    //$total = $total+100;
+    
+    
     }
+    $total = $total+100;
+    $discount = $_SESSION['discount'];
+    $discount_price = floor(($total/$discount));
+    $total = $total-$discount_price;
+
     ?>
     <!-- <li>Subtotal <span class="pull-right"><strong>$380.00</strong></span></li> -->
     <li>Delivery charge <span class="pull-right"><?php $charge = 100; echo $charge; ?></span></li>
-    <li>Total<span class="pull-right"><?php echo $total+$charge; ?></span></li>
+    <li>Discount (<?php echo $discount ?>%) <span class="pull-right"><?php $charge = 100; echo '-'.$discount_price ?></span></li>
+    <li>Total<span class="pull-right"><?php echo $total; ?></span></li>
     <?php
 }
 
