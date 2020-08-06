@@ -19,6 +19,7 @@ if (!isset($_SESSION['admin'])) {
     <link href="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
     <!-- Core css -->
     <link href="assets/css/app.min.css" rel="stylesheet">
+    
 
 </head>
 
@@ -148,7 +149,7 @@ if (!isset($_SESSION['admin'])) {
     <!-- Core JS -->
     <script src="assets/js/app.min.js"></script>
     <script src="assets/js/SignupValidation.js"></script>
-
+    
 
 </body>
 </html>

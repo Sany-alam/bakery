@@ -132,6 +132,7 @@ if (!isset($_SESSION['cart'])) {
     <script src="assets/js/jquery-ui.min.js"></script>
     <!-- main js -->
     <script src="assets/js/scripts.js"></script>
+    <script src="../sweetalert/sweetalert.js"></script>
     <!-- custom java scripts and ajax -->
     <script>
         $(function(){
@@ -350,6 +351,23 @@ if (!isset($_SESSION['cart'])) {
         }
     });
 
+});
+
+$(document).ajaxStart(function() {
+    swal({
+        icon: "../sweetalert/loading-gif-png-5.gif",
+        button: false,
+        closeOnClickOutside: true,
+        closeOnEsc: false,
+    });
+    $(".swal-modal").css('background-color', 'rgba(0,0,0,0.0)');
+    $(".swal-overlay").css('background-color', 'rgba(0,0,0,0.8)');
+    $('.swal-icon').css({
+        "height":"180px",
+    });
+});
+$(document).ajaxStop(function() {
+    swal.close();
 });
 </script>
 </html>

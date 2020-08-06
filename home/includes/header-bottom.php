@@ -14,6 +14,9 @@
                         <li><a href="index.php">Home</a></li>
                         <?php
                         if (isset($_SESSION['user'])) {
+                            $a = $_SESSION['user'];
+                            //echo josn_encode($a);
+                           file_put_contents('test.txt',json_encode($a));
                             ?>
                             <li><a href="myorders.php">My Orders</a></li>
                             <li><a href="change-password.php">Change password</a></li>
