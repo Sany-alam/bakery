@@ -262,12 +262,40 @@ if (isset($_POST['complete_orders'])) {
         }
 }
 
+if (isset($_POST['tranctions'])) {
+    $id = $_POST['user_id']; // customer id
+    $sql = "SELECT * FROM `transactions` WHERE `customer_id` = $id";
+    $res = mysqli_query($conn,$sql);
+    $data = '<table class="table">
+    <thead>
+        <tr>
+            <td>Order no</td>
+            <td>Payment method</td>
+            <td>Transaction code</td>
+        </tr>
+    </thead>
+    <tbody>';
+    $i=0;
+    while ($item = mysqli_fetch_assoc($res)) {
+        $data .='<tr>
+            <td>'.$item['order_no'].'</td>
+            <td>'.$item['payment_method'].'</td>
+            <td>'.$item['transaction_code'].'</td>
+        </tr>';
+        $i++;
+    }
+    $data.='</tbody>
+    </table>';
+
+    echo $data;
+}
+
 
 if (isset($_POST['on_delivery_courier_detail'])) {
     $id = $_POST['id'];
     $sql = "SELECT * from `courier` where `id` = '$id'";
     $res = mysqli_query($conn,$sql);
-    $item = mysqli_fetch_assoc($res)
+    $item = mysqli_fetch_assoc($res);
     ?>
     <div class="row align-items-center">
         <div class="col-md-7">
@@ -614,7 +642,7 @@ if (isset($_POST['customers'])) {
                     <th>Name</th>
                     <th>Phone</th>
                     <th>Email</th>
-                   
+                    <th>Transations</th>
                 </tr>
             </thead>
             <tbody>
@@ -626,7 +654,7 @@ if (isset($_POST['customers'])) {
                         <td><?php echo $fetch['name']; ?></td>
                         <td><?php echo $fetch['phone']; ?></td>
                         <td><?php echo $fetch['email']; ?></td>
-                       
+                        <td><button onclick="transactions(<?php echo $fetch['id']; ?>)" class="btn btn-sm btn-primary"><i class="fas fa-exchange-alt"></i></button></td>
                     </tr>
                     <?php
                 }

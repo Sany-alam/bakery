@@ -3,10 +3,6 @@ $(function(){
     show_cart();
     total_price();
     order_list();
-
-    $("#bkash").click(function(){
-        $("#exampleModalCenter").modal("show");
-    });
 });
 
 function products(order_id) {
@@ -27,32 +23,6 @@ function products(order_id) {
         cache:false
     });
 }
-
-function place_order() {
-    var address = $("#address").val();
-    if (address.length ==0) {
-        $(".alert").removeClass("alert-success").html("");
-        $(".alert").addClass("alert-danger").html("Ensure your address").show();
-    }
-    else{
-        var formdata = new FormData();
-        formdata.append("address",address);
-        formdata.append("order","order");
-        $.ajax({
-            processData:false,
-            contentType:false,
-            data:formdata,
-            type:"post",
-            url:"data.php",
-            success:function(data){
-                alert("Your order adedd successfully! Countinue shopping");
-                location.href="index.php";
-            },
-            cache:false
-        });
-    }
-}
-
 
 
 function order_list() {
@@ -245,6 +215,12 @@ function add_cart(id) {
             $("#cart-img").attr('src',all.img);
             $("#cart-name").html(all.name+" ("+all.quantity+")");
             $("#cart-hiddenQuantity").val(all.quantity);
+            if (parseInt(all.quantity) == 0) {
+                stocksStatus = `<p style="color: white;background: #ef4836;padding-left:10px;padding-right:10px;">Out of stock</p>`;
+            }else{
+                stocksStatus = `<p style="color: white;background: #ef4836;padding-left:10px;padding-right:10px;">In stock</p>`;
+            }
+            $("#stocks").html(stocksStatus);
             $("#cart-hiddenid").val(all.id);
             $("#quantity").val(1);
             $("#quantity").attr("max",all.quantity);

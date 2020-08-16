@@ -78,7 +78,7 @@ if (isset($_POST['register'])) {
     if ($res) {
         $subject = "Verify Email";
         $body = "Hi $name, Click here http://localhost/bakery/home/verify.php?token=$token to verify your email...";
-        $from = "From: playerc950@gmail.com ";
+        $from = "From:playerc950@gmail.com";
         if (mail($email,$subject,$body,$from)) {
             echo "ok";
             $_SESSION['register']='Successfully registered! Check your email to verify email.';
@@ -123,6 +123,10 @@ if (isset($_POST['order'])) {
     date_default_timezone_set('Asia/Dhaka');
     $date = date('Y-m-d');
     $address = $_POST['address'];
+    $payment_method = $_POST['payment_method'];
+    $transaction = $_POST['transaction'];
+
+    $customer = $_SESSION['user']['id'];
     
         $order_sql = "SELECT MAX(order_no) AS `order_no` FROM `orders`";
         $order_res = mysqli_query($conn,$order_sql);
@@ -137,17 +141,16 @@ if (isset($_POST['order'])) {
         $date = date('d-m-Y');
         $time = date('H:i:s');
         $status = "request";
+
+        $transaction_sql = "INSERT INTO `transactions`(`customer_id`, `order_no`,`payment_method`,`transaction_code`) VALUES ('$customer','$order_no','$payment_method','$transaction')";
+        $transaction_res = mysqli_query($conn,$transaction_sql);
         
     for ($i=1; $i < count($_SESSION['cart']); $i++) { 
         $product_id = $_SESSION['cart'][$i]['id'];
         $product_quantity = $_SESSION['cart'][$i]['quantity'];
-        if (isset($_SESSION['user'])) {
-            $customer = $_SESSION['user']['id'];
-        }else {
-            $customer = 0;
-        }
 
         $sql = "INSERT INTO `orders`(`address`, `product_id`,`product_quantity`,`order_no`,`status`,`order_date`,`order_time`,`customer`) VALUES ('$address','$product_id','$product_quantity','$order_no','$status','$date','$time','$customer')";
+
         $res = mysqli_query($conn,$sql);
 
         $sql_items = "SELECT * FROM `item-detail` WHERE `id` = '$product_id'";

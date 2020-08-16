@@ -40,6 +40,7 @@
                     <input type="hidden" id="cart-hiddenQuantity">
                     <div class="product-single-content w-50">
                         <h3 id="cart-name"></h3>
+                        <div id="stocks"></div>
                         <div class="rating-wrap fix">
                             <span id="cart-price" class="pull-left"></span>
                         </div>

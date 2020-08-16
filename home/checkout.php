@@ -77,14 +77,15 @@ if (isset($_SESSION['user'])) {
                         </ul>
 
                         <h5><b>Payment</b></h5>
-                        <input id="onDeliver" type="radio" name="deliverymethod" checked class="mr-2">
+                        <input id="onDeliver" type="radio" name="deliverymethod" class="mr-2">
                         <label for="onDeliver">Cash on delivery</label>
                         <input id="bkash" type="radio" name="deliverymethod">
                         <label for="bkash">Bkash</label>
+                        <div id="payment-alert" style="display:none;" class="alert alert-danger">Chose a payment method</div>
 
                         <hr>
                         <textarea id="address" class="form-control mb-2" placeholder="Your address"></textarea>
-                        <div class="alert">Ensure your address</div>
+                        <div id="address-alert" style="display:none;" class="alert alert-danger">Ensure your address</div>
                         <button onclick="place_order()">Place Order</button>
                     </div>
                 </div>
@@ -101,10 +102,10 @@ if (isset($_SESSION['user'])) {
                 <div class="modal-body">
                     <p><strong>Merchant No: +8801858814456</strong></p>
                     <hr>
-                    <label for="transaction">Ener transaction id</label>
-                    <input id="transaction" type="text" class="form-control">
-
-                    <button onclick="transaction_submit()" style="margin-top:10px;height: 45px;width: 100%;background: #ef4836;text-transform: uppercase;color: #fff;border: none;">Submit</button>
+                    <label for="transaction">Enter transaction id</label>
+                    <input id="transaction" type="text" class="form-control mb-3" autofocus>
+                    <div class="alert alert-danger" id="transaction-alert" style="display:none;">Ensure transaction id</div>
+                    <button id="transaction_submit" style="height: 45px;width: 100%;background: #ef4836;text-transform: uppercase;color: #fff;border: none;">Submit</button>
                 </div>
             </div>
         </div>
@@ -117,11 +118,95 @@ if (isset($_SESSION['user'])) {
     <!-- all js -->
     <?php include("includes/scripts.php"); ?>
     <script>
-    function transaction_submit() {
-        if ($("#transaction").val().length!=0) {
-            $("#exampleModalCenter").modal('hide');
+        var delMethod = '';
+        $("#bkash").click(function(){
+            delMethod = 'bkash';
+            $("#exampleModalCenter").modal("show");
+        });
+        $("#onDeliver").click(function(){
+            delMethod = 'delivery';
+        });
+
+        function deliveryMethod(){
+            if (delMethod.length!=0) {
+                if (delMethod == 'bkash') {
+                    // transactionCheck();
+                    if ($("#transaction").val().length!=0) {
+                        $("#exampleModalCenter").modal("hide");
+                        $("#transaction-alert").hide();
+                        return false;
+                    }else{
+                        $("#exampleModalCenter").modal("show");
+                        $("#transaction-alert").show();
+                        return true;
+                    }
+                    $("#payment-alert").hide();
+                }
+                else{
+                    $("#payment-alert").hide();
+                    return false;
+                }
+            }else{
+                $("#payment-alert").show();
+                return true;
+            }
         }
-    }
+
+        $("#address").focusout(function(){
+            addressInput();
+        });
+
+        function addressInput() 
+        {
+            if ($("#address").val().length!=0) {
+                $("#address-alert").hide();
+                return false;
+            }else{
+                $("#address-alert").show();
+                return true;
+            }
+        }
+
+        $("#transaction_submit").click(function() {
+            if (deliveryMethod()) {
+                $("#transaction-alert").show();
+            }else{
+                $("#transaction-alert").hide();
+                $("#exampleModalCenter").modal("hide");
+            }
+        });
+        
+        function place_order() {
+            if (addressInput() == false && deliveryMethod() == false) {
+                var address = $("#address").val();
+                var payment_method = delMethod;
+                var formdata = new FormData();
+                formdata.append("address",address);
+                formdata.append("payment_method",payment_method);
+                formdata.append("transaction",$("#transaction").val());
+                formdata.append("order","order");
+                $.ajax({
+                    processData:false,
+                    contentType:false,
+                    data:formdata,
+                    type:"post",
+                    url:"data.php",
+                    success:function(data){
+                        alert("Your order adedd successfully! Countinue shopping");
+                        location.href="index.php";
+                    },
+                    cache:false
+                });
+            }else{
+                if (addressInput() == true) {
+                    $("#address-alert").show();
+                }
+                if (deliveryMethod() == true) {
+                    
+                }
+            }
+        }
+
     </script>
 </body>
 </html>

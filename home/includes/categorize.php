@@ -28,6 +28,7 @@ $res = mysqli_query($conn,$sql);
                 <div class="product-content">
                     <h3><a href="javascript:void(0)"><?php echo $item['name'] ?></a></h3>
                     <p class="pull-left"><?php echo $item['price'] ?>Tk</p>
+                    <p class="pull-right" style="color: white;background: #ef4836;padding-left:10px;padding-right:10px;"><?php echo ($item['quantity'] > 0 ? 'In stock' : 'Out of stock') ?></p>
                 </div>
             </div>
         </li>

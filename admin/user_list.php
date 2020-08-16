@@ -41,41 +41,14 @@ if (isset($_SESSION['admin'])) {
                 </div>
 
                 <!-- Modal -->
-                <div class="modal fade" id="AddCourierModal">
+                <div class="modal fade" id="transaction_list_modal">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalScrollableTitle">Add Courier</h5>
-                                <button type="button" class="close" data-dismiss="modal">
-                                    <i class="anticon anticon-close"></i>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="courier-name">Name :</label>
-                                    <input id="courier-name" type="text" class="form-control" placeholder="Courier Name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="courier-phone">Phone :</label>
-                                    <input id="courier-phone" type="text" class="form-control" placeholder="Courier Phone">
-                                </div>
-                                <div class="form-group">
-                                    <label for="courier-password">Password :</label>
-                                    <input id="courier-password" type="password" class="form-control" placeholder="Courier password">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="form-group">
-                                    <div class="text-right">
-                                        <button type="button" class="btn btn-primary" id="AddCourier">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <div id="transaction_list" class="modal-body"></div>
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
-                <div class="modal fade" id="UpdateCourierModal">
+                <!--  <div class="modal fade" id="UpdateCourierModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -108,7 +81,7 @@ if (isset($_SESSION['admin'])) {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <!-- Content Wrapper END -->
         </div>
@@ -128,84 +101,102 @@ if (isset($_SESSION['admin'])) {
     <!-- custom js -->
     <script>
         $(function(){
-            $("#AddCourier").click(function(){
-                var formdata = new FormData();
-                formdata.append("add_courier","add_courier");
-                formdata.append("courier_name",$("#courier-name").val());
-                formdata.append("courier_phone",$("#courier-phone").val());
-                formdata.append("courier_password",$("#courier-password").val());
-                $.ajax({
-                    processData:false,
-                    contentType:false,
-                    data:formdata,
-                    type:"post",
-                    url:"data.php",
-                    success:function(data)
-                    {
-                        if ($.trim(data).length > 0) {
-                            alert(data);
-                        }
-                        else{
-                            showCourier();
-                            $("#AddCourierModal").modal("hide");
-                        }
-                    },
-                    cache:false
-                });
-            });
+            // $("#AddCourier").click(function(){
+            //     var formdata = new FormData();
+            //     formdata.append("add_courier","add_courier");
+            //     formdata.append("courier_name",$("#courier-name").val());
+            //     formdata.append("courier_phone",$("#courier-phone").val());
+            //     formdata.append("courier_password",$("#courier-password").val());
+            //     $.ajax({
+            //         processData:false,
+            //         contentType:false,
+            //         data:formdata,
+            //         type:"post",
+            //         url:"data.php",
+            //         success:function(data)
+            //         {
+            //             if ($.trim(data).length > 0) {
+            //                 alert(data);
+            //             }
+            //             else{
+            //                 showCourier();
+            //                 $("#AddCourierModal").modal("hide");
+            //             }
+            //         },
+            //         cache:false
+            //     });
+            // });
 
-            $("#UpdateCourier").click(function(){
-                var formdata = new FormData();
-                formdata.append("update_courier","update_courier");
-                formdata.append("courier_id",$("#hidden-courier-id").val());
-                formdata.append("courier_name",$("#update-courier-name").val());
-                formdata.append("courier_phone",$("#update-courier-phone").val());
-                formdata.append("courier_password",$("#update-courier-password").val());
-                $.ajax({
-                    processData:false,
-                    contentType:false,
-                    data:formdata,
-                    type:"post",
-                    url:"data.php",
-                    success:function(data)
-                    {
-                        showCourier()
-                        $("#UpdateCourierModal").modal("hide");
-                    },
-                    cache:false
-                });
-            });
-            showCourier();
+            // $("#UpdateCourier").click(function(){
+            //     var formdata = new FormData();
+            //     formdata.append("update_courier","update_courier");
+            //     formdata.append("courier_id",$("#hidden-courier-id").val());
+            //     formdata.append("courier_name",$("#update-courier-name").val());
+            //     formdata.append("courier_phone",$("#update-courier-phone").val());
+            //     formdata.append("courier_password",$("#update-courier-password").val());
+            //     $.ajax({
+            //         processData:false,
+            //         contentType:false,
+            //         data:formdata,
+            //         type:"post",
+            //         url:"data.php",
+            //         success:function(data)
+            //         {
+            //             showCourier()
+            //             $("#UpdateCourierModal").modal("hide");
+            //         },
+            //         cache:false
+            //     });
+            // });
+            showCustomer();
         });
         
 
-        function edit_courier(id) {
-            var formdata = new FormData();
-            formdata.append('id',id);
-            formdata.append("edit_courier","edit_courier");
-            $.ajax({
-                processData:false,
-                contentType:false,
-                data:formdata,
-                type:"post",
-                url:"data.php",
-                success:function(data)
-                {
-                    data = JSON.parse(data);
-                    $("#update-courier-password").val(data.password);
-                    $("#update-courier-phone").val(data.phone);
-                    $("#update-courier-name").val(data.name);
-                    $("#hidden-courier-id").val(data.id);
-                    $("#UpdateCourierModal").modal("show");
-                },
-                cache:false
-            });
-        }
+        // function edit_courier(id) {
+        //     var formdata = new FormData();
+        //     formdata.append('id',id);
+        //     formdata.append("edit_courier","edit_courier");
+        //     $.ajax({
+        //         processData:false,
+        //         contentType:false,
+        //         data:formdata,
+        //         type:"post",
+        //         url:"data.php",
+        //         success:function(data)
+        //         {
+        //             data = JSON.parse(data);
+        //             $("#update-courier-password").val(data.password);
+        //             $("#update-courier-phone").val(data.phone);
+        //             $("#update-courier-name").val(data.name);
+        //             $("#hidden-courier-id").val(data.id);
+        //             $("#UpdateCourierModal").modal("show");
+        //         },
+        //         cache:false
+        //     });
+        // }
 
-        function delete_courier(id){
+        // function delete_courier(id){
+        //     formdata = new FormData();
+        //     formdata.append('id',id);
+        //     formdata.append('delete_couriers','delete_couriers');
+        //     $.ajax({
+        //         processData:false,
+        //         contentType:false,
+        //         data:formdata,
+        //         type:"post",
+        //         url:"data.php",
+        //         success:function(data)
+        //         {
+        //             showCourier();
+        //         },
+        //         cache:false
+        //     });
+        // }
+
+        function transactions(id) {
             formdata = new FormData();
-            formdata.append('id',id);
-            formdata.append('delete_couriers','delete_couriers');
+            formdata.append('user_id',id);
+            formdata.append('tranctions','tranctions');
             $.ajax({
                 processData:false,
                 contentType:false,
@@ -214,13 +205,15 @@ if (isset($_SESSION['admin'])) {
                 url:"data.php",
                 success:function(data)
                 {
-                    showCourier();
+                    console.log(data);
+                    $("#transaction_list").html(data);
+                    $("#transaction_list_modal").modal('show');
                 },
                 cache:false
             });
         }
 
-        function showCourier() {
+        function showCustomer() {
             formdata = new FormData();
             formdata.append('customers','customers');
             $.ajax({

@@ -22,6 +22,7 @@ if (mysqli_num_rows($res)>0) {
         <div class="product-content">
         <h3><a href="javascript:void(0);"><?php echo $items['name'] ?></a></h3>
         <p class="pull-left"><?php echo $items['price']."Tk" ?></p>
+        <p class="pull-right" style="color: white;background: #ef4836;padding-left:10px;padding-right:10px;"><?php echo ($items['quantity'] > 0 ? 'In stock' : 'Out of stock') ?></p>
         </div>
         </div>
         </li>

@@ -285,9 +285,16 @@ if (!isset($_SESSION['cart'])) {
 
     function phn() 
     {
+        var pattern = new RegExp(/^\+?(88)?0?1[56789][0-9]{8}\b/);
         if ($("input[name='phone']").val().length == 0) 
         {
             $("#phone_alert").html("Phone number is required");
+            $("#phone_alert").show();
+            return true;
+        }
+        else if(!pattern.test($("input[name='phone']").val()))
+        {
+            $("#phone_alert").html("Invalid phone number");
             $("#phone_alert").show();
             return true;
         }
